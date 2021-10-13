@@ -1,21 +1,19 @@
 import Head from 'next/head';
 
+// components
+import Map from 'components/map';
+
 const Home: React.FC = () => (
   <div>
     <Head>
-      <title>Welcome</title>
+      <title>Land Carbon Explorer</title>
     </Head>
-    <h1>Welcome to Vizzuality Front End scaffold project.</h1>
-    <p>Remember to edit:</p>
-    <ul>
-      <li>package.json</li>
-      <li>pages/app.js</li>
-      <li>now.json (Vercel)</li>
-    </ul>
-    <p>
-      Also, we strongly recommend to read and follow our [Standardization
-      guidelines](https://vizzuality.github.io/devismos/docs/guidelines/standardization/).
-    </p>
+    <div className="absolute top-0 left-0 w-full h-full">
+      <Map
+        mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+        onMapViewportChange={() => {}}
+      />
+    </div>
   </div>
 );
 
