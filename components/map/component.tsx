@@ -19,6 +19,7 @@ export const Map: FC<MapProps> = ({
   className,
   viewport,
   bounds,
+  basemap,
   onMapReady,
   onMapLoad,
   onMapViewportChange,
@@ -50,12 +51,57 @@ export const Map: FC<MapProps> = ({
   const [ready, setReady] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
+  const setBasemap = useCallback(() => {
+    if (!mapRef.current) return false;
+
+    const BASEMAP_GROUPS = ['basemap'];
+    const { layers, metadata } = mapRef.current.getStyle();
+
+    const basemapGroups = Object.keys(metadata['mapbox:groups']).filter((k) => {
+      const { name } = metadata['mapbox:groups'][k];
+
+      const matchedGroups = BASEMAP_GROUPS.map((rgr) => name.toLowerCase().includes(rgr));
+
+      return matchedGroups.some((bool) => bool);
+    });
+
+    const basemapsWithMeta = basemapGroups.map((groupId) => ({
+      ...metadata['mapbox:groups'][groupId],
+      id: groupId,
+    }));
+    const basemapToDisplay = basemapsWithMeta.find((_basemap) => _basemap.name.includes(basemap));
+
+    const basemapLayers = layers.filter((l) => {
+      const { metadata: layerMetadata } = l;
+      if (!layerMetadata) return false;
+
+      const gr = layerMetadata['mapbox:group'];
+      return basemapGroups.includes(gr);
+    });
+
+    if (!basemapToDisplay) return false;
+
+    basemapLayers.forEach((_layer) => {
+      const match = _layer.metadata['mapbox:group'] === basemapToDisplay.id;
+      if (!match) {
+        mapRef.current.setLayoutProperty(_layer.id, 'visibility', 'none');
+      } else {
+        mapRef.current.setLayoutProperty(_layer.id, 'visibility', 'visible');
+      }
+    });
+
+    return true;
+  }, []);
+
   /**
    * CALLBACKS
    */
   const handleLoad = useCallback(() => {
     setLoaded(true);
-    if (onMapLoad) onMapLoad({ map: mapRef.current, mapContainer: mapContainerRef.current });
+    if (onMapLoad) {
+      onMapLoad({ map: mapRef.current, mapContainer: mapContainerRef.current });
+    }
+    if (basemap) setBasemap();
   }, [onMapLoad]);
 
   const debouncedOnMapViewportChange = useDebouncedCallback((v) => {
@@ -125,18 +171,23 @@ export const Map: FC<MapProps> = ({
     }, +transitionDuration);
   }, [ready, bounds, debouncedOnMapViewportChange]);
 
-  const handleGetCursor = useCallback(({ isHovering, isDragging }) => {
-    if (isHovering) return 'pointer';
-    if (isDragging) return 'grabbing';
-    return 'grab';
-  }, []);
+  const handleGetCursor = useCallback(
+    ({ isHovering, isDragging }) => {
+      if (isHovering) return 'pointer';
+      if (isDragging) return 'grabbing';
+      return 'grab';
+    },
+    [basemap]
+  );
 
   /**
    * EFFECTS
    */
   useEffect(() => {
     setReady(true);
-    if (onMapReady) onMapReady({ map: mapRef.current, mapContainer: mapContainerRef.current });
+    if (onMapReady) {
+      onMapReady({ map: mapRef.current, mapContainer: mapContainerRef.current });
+    }
   }, [onMapReady]);
 
   useEffect(() => {
@@ -167,6 +218,7 @@ export const Map: FC<MapProps> = ({
           }
         }}
         mapboxApiAccessToken={mapboxApiAccessToken}
+        mapStyle="mapbox://styles/resourcewatch/cjzmw480d00z41cp2x81gm90h"
         // CUSTOM PROPS FROM REACT MAPBOX API
         {...mapboxProps}
         // VIEWPORT
