@@ -1,16 +1,26 @@
 import { useCallback, useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import Head from 'next/head';
 
 // components
+import { setBasemap, setBoundaries, setLabels } from 'store/features/ui/map';
+import { useAppSelector } from 'store/hooks';
+
 import Map from 'components/map';
-import { BASEMAPS, DEFAULT_VIEWPORT } from 'components/map/constants';
+import { DEFAULT_VIEWPORT } from 'components/map/constants';
+import BasemapControls from 'components/map/controls/basemap';
 import ZoomControls from 'components/map/controls/zoom';
 import Sidebar from 'components/sidebar';
-// constants
+import { AppDispatch } from 'store';
 
 const Home: React.FC = () => {
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
+  const dispatch: AppDispatch = useDispatch();
+  const basemap = useAppSelector((state) => state.map.basemap);
+  const labels = useAppSelector((state) => state.map.labels);
+  const boundaries = useAppSelector((state) => state.map.boundaries);
 
   const handleViewport = useCallback((_viewport) => {
     setViewport(_viewport);
@@ -24,6 +34,18 @@ const Home: React.FC = () => {
     }));
   }, []);
 
+  const handleBasemap = useCallback(({ id }) => {
+    dispatch(setBasemap(id));
+  }, []);
+
+  const handleBoundaries = useCallback((_boundaries) => {
+    dispatch(setBoundaries(_boundaries));
+  }, []);
+
+  const handleLabels = useCallback(({ value }) => {
+    dispatch(setLabels(value));
+  }, []);
+
   return (
     <>
       <Head>
@@ -35,7 +57,9 @@ const Home: React.FC = () => {
           <Map
             mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
             viewport={viewport}
-            basemap={BASEMAPS.dark.value}
+            basemap={basemap}
+            labels={labels}
+            boundaries={boundaries}
             onMapViewportChange={handleViewport}
           >
             {() => (
@@ -63,6 +87,14 @@ const Home: React.FC = () => {
           </Map>
           <div className="z-10 absolute top-10 right-5">
             <ZoomControls viewport={viewport} onZoomChange={handleZoom} />
+            <BasemapControls
+              basemap={basemap}
+              labels={labels}
+              boundaries={boundaries}
+              onChangeBasemap={handleBasemap}
+              onChangeLabels={handleLabels}
+              onChangeBoundaries={handleBoundaries}
+            />
           </div>
         </div>
       </div>

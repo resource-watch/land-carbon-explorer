@@ -20,6 +20,8 @@ export const Map: FC<MapProps> = ({
   viewport,
   bounds,
   basemap,
+  labels,
+  boundaries,
   onMapReady,
   onMapLoad,
   onMapViewportChange,
@@ -91,7 +93,66 @@ export const Map: FC<MapProps> = ({
     });
 
     return true;
-  }, []);
+  }, [basemap]);
+
+  const setLabels = useCallback(() => {
+    const LABELS_GROUP = ['labels'];
+    const { layers, metadata } = mapRef.current.getStyle();
+
+    const labelGroups = Object.keys(metadata['mapbox:groups']).filter((k) => {
+      const { name } = metadata['mapbox:groups'][k];
+
+      const matchedGroups = LABELS_GROUP.filter((rgr) => name.toLowerCase().includes(rgr));
+
+      return matchedGroups.some((bool) => bool);
+    });
+
+    const labelsWithMeta = labelGroups.map((groupId) => ({
+      ...metadata['mapbox:groups'][groupId],
+      id: groupId,
+    }));
+    const labelsToDisplay = labelsWithMeta.find((_basemap) => _basemap.name.includes(labels)) || {};
+
+    const labelLayers = layers.filter((l) => {
+      const { metadata: layerMetadata } = l;
+      if (!layerMetadata) return false;
+
+      const gr = layerMetadata['mapbox:group'];
+      return labelGroups.includes(gr);
+    });
+
+    labelLayers.forEach((_layer) => {
+      const match = _layer.metadata['mapbox:group'] === labelsToDisplay.id;
+      mapRef.current.setLayoutProperty(_layer.id, 'visibility', match ? 'visible' : 'none');
+    });
+
+    return true;
+  }, [labels]);
+
+  const setBoundaries = useCallback(() => {
+    const LABELS_GROUP = ['boundaries'];
+    const { layers, metadata } = mapRef.current.getStyle();
+
+    const boundariesGroups = Object.keys(metadata['mapbox:groups']).filter((k) => {
+      const { name } = metadata['mapbox:groups'][k];
+
+      const labelsGroup = LABELS_GROUP.map((rgr) => name.toLowerCase().includes(rgr));
+
+      return labelsGroup.some((bool) => bool);
+    });
+
+    const boundariesLayers = layers.filter((l) => {
+      const { metadata: layerMetadata } = l;
+      if (!layerMetadata) return false;
+
+      const gr = layerMetadata['mapbox:group'];
+      return boundariesGroups.includes(gr);
+    });
+
+    boundariesLayers.forEach((l) => {
+      mapRef.current.setLayoutProperty(l.id, 'visibility', boundaries ? 'visible' : 'none');
+    });
+  }, [boundaries]);
 
   /**
    * CALLBACKS
@@ -101,7 +162,9 @@ export const Map: FC<MapProps> = ({
     if (onMapLoad) {
       onMapLoad({ map: mapRef.current, mapContainer: mapContainerRef.current });
     }
-    if (basemap) setBasemap();
+    setBasemap();
+    setLabels();
+    setBoundaries();
   }, [onMapLoad]);
 
   const debouncedOnMapViewportChange = useDebouncedCallback((v) => {
@@ -202,6 +265,18 @@ export const Map: FC<MapProps> = ({
       ...viewport,
     }));
   }, [viewport]);
+
+  useEffect(() => {
+    if (loaded) setBasemap();
+  }, [basemap]);
+
+  useEffect(() => {
+    if (loaded) setLabels();
+  }, [labels]);
+
+  useEffect(() => {
+    if (loaded) setBoundaries();
+  }, [boundaries]);
 
   return (
     <div

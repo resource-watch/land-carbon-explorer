@@ -14,6 +14,12 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link rel="preconnect" href="https://fonts.gstatic.com/" />
+          <link
+            rel="stylesheet"
+            media="screen"
+            href="https://fonts.googleapis.com/css?family=Lato:300,400,700"
+          />
           {/* Global site tag (gtag.js) - Google Analytics */}
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
           <script

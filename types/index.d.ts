@@ -6,3 +6,7 @@ export interface TypeExample {
   id: string;
   anyProperty: number;
 }
+
+export interface BasemapOptions {
+  attribution: string;
+}

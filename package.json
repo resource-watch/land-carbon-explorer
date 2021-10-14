@@ -75,6 +75,7 @@
     "react-popper": "^2.2.5",
     "react-query": "^3.16.0",
     "react-redux": "^7.2.4",
+    "react-tether": "^2.0.8",
     "tailwindcss": "^2.1.2",
     "use-debounce": "^6.0.1",
     "validate.js": "^0.13.1"
@@ -87,6 +88,7 @@
     "@types/axios": "^0.14.0",
     "@types/gtag.js": "^0.0.5",
     "@types/react": "^17.0.5",
+    "@types/tether": "^1.4.6",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.0.0",
     "babel-loader": "^8.2.2",

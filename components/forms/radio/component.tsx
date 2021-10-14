@@ -8,7 +8,7 @@ import { THEME } from './constants';
 import type { RadioProps } from './types';
 
 export const Radio: FC<RadioProps> = ({
-  theme = 'dark',
+  theme = 'light',
   disabled = false,
   input = {},
   meta = {},
