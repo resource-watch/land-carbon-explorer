@@ -1,13 +1,19 @@
 import { useCallback, useState } from 'react';
 
+import flatten from 'lodash/flatten';
+
 import Head from 'next/head';
 
+import PluginMapboxGl from '@vizzuality/layer-manager-plugin-mapboxgl';
+import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
+
 // components
+import { useFetchDatasets } from 'hooks/dataset';
+
 import Map from 'components/map';
 import { BASEMAPS, DEFAULT_VIEWPORT } from 'components/map/constants';
 import ZoomControls from 'components/map/controls/zoom';
 import Sidebar from 'components/sidebar';
-// constants
 
 const Home: React.FC = () => {
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
@@ -24,6 +30,14 @@ const Home: React.FC = () => {
     }));
   }, []);
 
+  const { data: layers } = useFetchDatasets(
+    {},
+    {
+      select: (_datasets) => flatten(_datasets.map(({ layer }) => layer)),
+      placeholderData: [],
+    }
+  );
+
   return (
     <>
       <Head>
@@ -38,26 +52,13 @@ const Home: React.FC = () => {
             basemap={BASEMAPS.dark.value}
             onMapViewportChange={handleViewport}
           >
-            {() => (
+            {(map) => (
               <>
-                {/* <LayerManager map={_map} layers={layers} />
-                {tooltip.lngLat && (
-                  <Popup
-                    latitude={tooltip.lngLat[1]}
-                    longitude={tooltip.lngLat[0]}
-                    closeButton={false}
-                    className="rw-ow-popup-layer"
-                  >
-                    <span
-                      style={{
-                        color: '#fab72e',
-                        textShadow: '1px 1px 2px rgba(15, 69, 115, 0.75)',
-                      }}
-                    >
-                      {tooltip.countryName}
-                    </span>
-                  </Popup>
-                )} */}
+                <LayerManager map={map} plugin={PluginMapboxGl}>
+                  {layers.map((l) => (
+                    <Layer key={l.id} {...l} />
+                  ))}
+                </LayerManager>
               </>
             )}
           </Map>
