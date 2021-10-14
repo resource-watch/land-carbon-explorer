@@ -2,11 +2,19 @@ import { useCallback, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
+import flatten from 'lodash/flatten';
+
 import Head from 'next/head';
 
-// components
 import { setBasemap, setBoundaries, setLabels } from 'store/features/ui/map';
 import { useAppSelector } from 'store/hooks';
+
+import PluginMapboxGl from '@vizzuality/layer-manager-plugin-mapboxgl';
+import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
+
+// components
+
+import { useFetchDatasets } from 'hooks/dataset';
 
 import Map from 'components/map';
 import { DEFAULT_VIEWPORT } from 'components/map/constants';
@@ -46,6 +54,14 @@ const Home: React.FC = () => {
     dispatch(setLabels(value));
   }, []);
 
+  const { data: layers } = useFetchDatasets(
+    {},
+    {
+      select: (_datasets) => flatten(_datasets.map(({ layer }) => layer)),
+      placeholderData: [],
+    }
+  );
+
   return (
     <>
       <Head>
@@ -62,26 +78,13 @@ const Home: React.FC = () => {
             boundaries={boundaries}
             onMapViewportChange={handleViewport}
           >
-            {() => (
+            {(map) => (
               <>
-                {/* <LayerManager map={_map} layers={layers} />
-                {tooltip.lngLat && (
-                  <Popup
-                    latitude={tooltip.lngLat[1]}
-                    longitude={tooltip.lngLat[0]}
-                    closeButton={false}
-                    className="rw-ow-popup-layer"
-                  >
-                    <span
-                      style={{
-                        color: '#fab72e',
-                        textShadow: '1px 1px 2px rgba(15, 69, 115, 0.75)',
-                      }}
-                    >
-                      {tooltip.countryName}
-                    </span>
-                  </Popup>
-                )} */}
+                <LayerManager map={map} plugin={PluginMapboxGl}>
+                  {layers.map((l) => (
+                    <Layer key={l.id} {...l} />
+                  ))}
+                </LayerManager>
               </>
             )}
           </Map>
