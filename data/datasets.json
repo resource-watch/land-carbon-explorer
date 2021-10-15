@@ -123,9 +123,10 @@
             "type": "raster",
             "source": {
               "tiles": [
-                "https://tiles.globalforestwatch.org/glad_prod/tiles/{z}/{x}/{y}.png"
+                "https://storage.googleapis.com/lcl_tiles/test_snow_type/{z}/{x}/{y}.png"
               ],
-              "maxzoom": 13
+              "minzoom": 1,
+              "maxzoom": 5
             },
             "legendConfig": {
               "type": "basic",
