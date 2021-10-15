@@ -22,7 +22,7 @@ export function fetchDatasets(): Promise<Dataset[]> {
   // headers = {},
   // _meta = false
   // todo: remove this line when datasets are in the API.
-  return Promise.resolve([WRISerializer(DATASETS)]);
+  return Promise.resolve(WRISerializer(DATASETS));
 }
 // const newParams = {
 //   // env: process.env.NEXT_PUBLIC_API_ENV,

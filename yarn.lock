@@ -1659,7 +1659,7 @@
   resolved "https://registry.yarnpkg.com/@luma.gl/constants/-/constants-8.5.10.tgz#dd8b5ed786e372582a1a28e79c20481e363b4b50"
   integrity sha512-0OZnNbb8hF+ogr/Exr5KFEnSMQdCgjrbO2ZYeNIGO0UVMTu4oTSLfRcBxKUs1NzxG5RogyV8dL6ETQbkP5VAZw==
 
-"@luma.gl/core@^8.4.1", "@luma.gl/core@^8.4.5":
+"@luma.gl/core@^8.4.1":
   version "8.4.5"
   resolved "https://registry.yarnpkg.com/@luma.gl/core/-/core-8.4.5.tgz#a4eadc4375c7f7dac0b698cf83d25c8fe8f6df29"
   integrity sha512-J5fc35Bo8OpFTLQpeacYRtprjIMbgxNlPddnHLzBT3Q2pBrO4yHaA9NEZHEoXULUcuIgIpI/tSk62fc/bFrjiA==
@@ -3925,20 +3925,6 @@
     "@typescript-eslint/types" "4.25.0"
     eslint-visitor-keys "^2.0.0"
 
-"@vizzuality/layer-manager-layers-deckgl@^1.0.0-alpha.3":
-  version "1.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@vizzuality/layer-manager-layers-deckgl/-/layer-manager-layers-deckgl-1.0.0-alpha.3.tgz#e6a5a83bf063144d4f045779eb8b16210d827c89"
-  integrity sha512-THx++MLC3P1VJWShgNz0cbCT8JGpQmB5NIH8ETDsX2Gmi/gw8EPAAdNNGZcbROCLsX0y0LNbJVrKuywi3U4+Sw==
-  dependencies:
-    "@deck.gl/core" "^8.4.16"
-    "@luma.gl/constants" "^8.4.5"
-    "@luma.gl/core" "^8.4.5"
-    "@math.gl/web-mercator" "^3.4.2"
-    "@vizzuality/layer-manager-utils" "^1.0.0-alpha.3"
-    cancelable-promise "^3.2.3"
-    math.gl "^3.4.2"
-    react "^17.0.2"
-
 "@vizzuality/layer-manager-plugin-mapboxgl@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@vizzuality/layer-manager-plugin-mapboxgl/-/layer-manager-plugin-mapboxgl-1.0.1.tgz#94ba7902a956c10f84a7eb2b395ba0243f2da6b5"
@@ -3950,14 +3936,6 @@
     cancelable-promise "^3.2.3"
     react "^17.0.2"
 
-"@vizzuality/layer-manager-provider-carto@^1.0.0-alpha.3":
-  version "1.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@vizzuality/layer-manager-provider-carto/-/layer-manager-provider-carto-1.0.0-alpha.3.tgz#24f7fecc4d991850a7b642093873103ff38d2fd8"
-  integrity sha512-ft+Ao1hJAWmR6a6nOyfzrvcV8rkOV50mIZWaSx4FEfie4nubzHXLDepIy6sSG+gdTCdyMtcCTzBOmOT0Si334w==
-  dependencies:
-    "@vizzuality/layer-manager" "^4.0.0-alpha.4"
-    "@vizzuality/layer-manager-utils" "^1.0.0-alpha.3"
-
 "@vizzuality/layer-manager-react@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@vizzuality/layer-manager-react/-/layer-manager-react-1.0.1.tgz#fb22e51480df9d177e4c68b4183a0df2cb87624f"
@@ -3968,14 +3946,6 @@
     cancelable-promise "^3.2.3"
     fast-deep-equal "^3.1.3"
 
-"@vizzuality/layer-manager-utils@^1.0.0-alpha.3":
-  version "1.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/@vizzuality/layer-manager-utils/-/layer-manager-utils-1.0.0-alpha.3.tgz#85c315465b95ef829dc1035f56ae80fb7cbe549d"
-  integrity sha512-WqxDQ/SsNh56HrQ1gi7mej+xbkvWq+ZrMK6A3PuZL7Ydg6AxINGTYNYmO3XinuSZ1B88dq9XDwnLVse0BPdtSQ==
-  dependencies:
-    axios "^0.21.1"
-    cancelable-promise "^3.2.3"
-
 "@vizzuality/layer-manager-utils@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@vizzuality/layer-manager-utils/-/layer-manager-utils-1.0.1.tgz#4664052ee4ab18c13168118926e5fa734c51d1e2"
@@ -3983,17 +3953,6 @@
   dependencies:
     axios "^0.21.4"
     cancelable-promise "^3.2.3"
-
-"@vizzuality/layer-manager@^4.0.0-alpha.4":
-  version "4.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@vizzuality/layer-manager/-/layer-manager-4.0.0-alpha.4.tgz#b1476527ce3846d93c93875aaec33ca5dd0af2a7"
-  integrity sha512-wPspRC/JbXQyB1LsPulIfBcdPHSJshX7n3SHK08NkNpCw+TN0k/6f8+uvJU7CkV4i9QBuc/3K02ZqSWwnRyeZA==
-  dependencies:
-    "@vizzuality/layer-manager-utils" "^1.0.0-alpha.3"
-    axios "^0.21.1"
-    cancelable-promise "^3.2.3"
-    fast-deep-equal "^3.1.3"
-    mapbox-gl "^2.2.0"
 
 "@vizzuality/layer-manager@^4.0.1":
   version "4.0.1"
