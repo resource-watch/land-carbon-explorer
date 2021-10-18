@@ -4,6 +4,7 @@
       "id": "5c615e0f-f5e7-4e02-a9e0-0248253a46a7",
       "type": "dataset",
       "attributes": {
+        "active": true,
         "name": "for.003.nrt GLAD Deforestation Alerts",
         "slug": "TEST-GLAD",
         "type": "raster",
@@ -107,7 +108,7 @@
             "id": "c34a93ee-58b5-48f4-9d23-31f3d790ac16",
             "type": "layer",
             "attributes": {
-              "name": "GLAD Alerts",
+              "name": "Snow Test",
               "slug": "test-glad",
               "dataset": "5c615e0f-f5e7-4e02-a9e0-0248253a46a7",
               "description": "Areas of likely tree cover loss: January 2017 - present for Colombia, Ecuador, French Guiana, Guyana, Suriname, and Venezuela, and January 2015 - present for all other countries covered.",
@@ -122,6 +123,7 @@
               "published": true,
               "env": "production",
               "type": "raster",
+              "layerConfig": {},
               "source": {
                 "tiles": [
                   "https://storage.googleapis.com/lcl_tiles/test_snow_type/{z}/{x}/{y}.png"
@@ -129,6 +131,144 @@
                 "minzoom": 1,
                 "maxzoom": 5
               },
+              "legendConfig": {
+                "type": "basic",
+                "items": [
+                  {
+                    "name": "Deforestation alert",
+                    "color": "#DA6497",
+                    "id": 0
+                  }
+                ]
+              },
+              "interactionConfig": {
+                "output": []
+              },
+              "applicationConfig": {},
+              "staticImageConfig": {},
+              "createdAt": "2020-02-14T14:05:08.080Z",
+              "updatedAt": "2020-02-26T21:22:31.405Z"
+            }
+          }
+        ],
+        "widgetRelevantProps": [],
+        "layerRelevantProps": []
+      }
+    },
+    {
+      "id": "20aead6e-fef9-41c7-92c8-ea00edcae077",
+      "type": "dataset",
+      "attributes": {
+        "active": true,
+        "name": "bio.030 Tiger Conservation Landscapes",
+        "slug": "Tiger-Conservation-Landscapes-1490086842553",
+        "type": "tabular",
+        "subtitle": null,
+        "application": [
+          "rw"
+        ],
+        "dataPath": null,
+        "attributesPath": null,
+        "connectorType": "rest",
+        "provider": "featureservice",
+        "userId": "58333dcfd9f39b189ca44c75",
+        "connectorUrl": "http://gis-gfw.wri.org/arcgis/rest/services/conservation/MapServer/3?f=pjson",
+        "sources": [],
+        "tableName": "conservationMapServer3",
+        "status": "saved",
+        "published": false,
+        "overwrite": false,
+        "subscribable": {},
+        "mainDateField": null,
+        "env": "production",
+        "geoInfo": true,
+        "protected": false,
+        "legend": {},
+        "clonedHost": {},
+        "errorMessage": null,
+        "taskId": null,
+        "createdAt": "2017-02-15T12:20:35.446Z",
+        "updatedAt": "2018-08-09T16:41:50.251Z",
+        "dataLastUpdated": null,
+        "metadata": [
+          {
+            "id": "5ac924b6976f8a0012fba878",
+            "type": "metadata",
+            "attributes": {
+              "dataset": "5c615e0f-f5e7-4e02-a9e0-0248253a46a7",
+              "application": "rw",
+              "resource": {
+                "id": "5c615e0f-f5e7-4e02-a9e0-0248253a46a7",
+                "type": "dataset"
+              },
+              "language": "en",
+              "name": "[Archived] GLAD Deforestation Alerts",
+              "description": "Lorem ipsum metadata",
+              "source": "UMD/GLAD",
+              "info": {
+                "rwId": "for.003.nrt [Archived]",
+                "data_type": "Raster",
+                "name": "[Archived] GLAD Deforestation Alerts",
+                "sources": [
+                  {
+                    "source-name": "University of Maryland (UMD)",
+                    "id": 0,
+                    "source-description": ""
+                  },
+                  {
+                    "source-name": "Global Land Analysis & Discovery Lab",
+                    "id": 1,
+                    "source-description": ""
+                  }
+                ],
+                "technical_title": "Global Land Analysis and Discovery (GLAD) Alert",
+                "functions": "Areas of likely tree cover loss in near-real time",
+                "cautions": "While Landsat 7 and 8 satellites together have a revisit period of 8 days, cloud cover can significantly limit the availability of imagery, particularly in the wet season. Alert dates represent the instance of detection, though tree cover loss could have taken place earlier, possibly weeks earlier, due to persistent cloud cover. In this data set, “tree cover” is defined as all vegetation greater than 5 m in height with greater than 60% canopy cover and may take the form of natural forests or plantations. “Tree cover loss” indicates the canopy removal of at least half a pixel and can be due to a variety of factors, including mechanical harvesting, fire, disease, or storm damage. As such, “loss” does not equate to deforestation. In Peru, where the alert system was first developed, the authors evaluated the data to have 13.5% false positives (loss detected where none occurred), though the majority of those false positives (9.5%) occurs on the edges of clearings. On edges, the 30 m Landsat pixels show a mix of forest and other land cover, which makes them prone to error in the system. The rate of false positives drops to 1% when only considering confirmed alerts. The data have 33% false negatives (undetected loss where it has occurred), though most of these occur in secondary forests—likely because the algorithm was created to capture primary forest loss. The higher rate of false negatives compared to false positives also indicates that the alerts are a conservative estimate of the tree cover loss that is actually occurring. When zoomed out, this data layer displays some degree of inaccuracy because the data points must be collapsed to be visible on a larger scale. Zoom in for greater detail.",
+                "citation": "Hansen, M.C., A. Krylov, A. Tyukavina, P.V. Potapov, S. Turubanova, B. Zutta, S. Ifo, B. Margono, F. Stolle, and R. Moore. 2016. \"Humid Tropical Forest Disturbance Alerts Using Landsat Data.\" Environmental Research Letters 11, no. 3. www.globalforestwatch.org. Accessed through Resource Watch, (date). [www.resourcewatch.org](https://www.resourcewatch.org).",
+                "license": "Creative Commons Attribution 4.0 International",
+                "license_link": "https://creativecommons.org/licenses/by/4.0/",
+                "geographic_coverage": "Brazil, Peru, Burundi, Cameroon, Central African Republic, Democratic Republic of the Congo, Equatorial Guinea, Gabon, Republic of the Congo, Rwanda, Uganda, Brunei, Indonesia, Malaysia, Papua New Guinea, Timor Leste, Russia (Far East only)",
+                "spatial_resolution": "30 m",
+                "date_of_content": "2015-present",
+                "frequency_of_updates": "Weekly",
+                "learn_more_link": "http://iopscience.iop.org/article/10.1088/1748-9326/11/3/034008",
+                "data_download_link": null,
+                "data_download_original_link": "http://iopscience.iop.org/article/10.1088/1748-9326/11/3/034008"
+              },
+              "columns": {},
+              "createdAt": "2018-04-07T20:06:14.065Z",
+              "updatedAt": "2020-06-12T20:05:04.205Z",
+              "status": "published"
+            }
+          }
+        ],
+        "layer": [
+          {
+            "id": "b9d1b315-efc3-433a-82ad-22e841c34f5a",
+            "type": "layer",
+            "attributes": {
+              "name": "GLAD Alerts",
+              "slug": "test-glad",
+              "dataset": "20aead6e-fef9-41c7-92c8-ea00edcae077",
+              "description": "Areas of likely tree cover loss: January 2017 - present for Colombia, Ecuador, French Guiana, Guyana, Suriname, and Venezuela, and January 2015 - present for all other countries covered.",
+              "application": [
+                "rw"
+              ],
+              "iso": [],
+              "provider": "leaflet",
+              "type": "raster",
+              "userId": "59a4168c9557070001cb9c77",
+              "default": true,
+              "protected": false,
+              "published": true,
+              "env": "production",
+              "source": {
+                "tiles": [
+                  "https://tiles.globalforestwatch.org/glad_prod/tiles/{z}/{x}/{y}.png"
+                ],
+                "maxzoom": 13
+              },
+              "layerConfig": {},
               "legendConfig": {
                 "type": "basic",
                 "items": [

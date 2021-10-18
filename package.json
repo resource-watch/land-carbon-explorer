@@ -78,6 +78,7 @@
     "tailwindcss": "^2.1.2",
     "use-debounce": "^6.0.1",
     "validate.js": "^0.13.1",
+    "vizzuality-components": "^3.0.3",
     "wri-json-api-serializer": "^1.0.1"
   },
   "devDependencies": {

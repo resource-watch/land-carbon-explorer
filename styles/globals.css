@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '~vizzuality-components/dist/bundle';
+
 @-webkit-keyframes autofill {
   0%,
   100% {
@@ -33,4 +35,10 @@
       backdrop-filter: blur(4px);
     }
   }
+}
+
+.vizzuality__toggle-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

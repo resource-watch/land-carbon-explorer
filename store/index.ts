@@ -1,3 +1,5 @@
+import activeDatasets from 'store/features/datasets';
+import layers from 'store/features/layers';
 import map from 'store/features/ui/map';
 
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
@@ -5,6 +7,8 @@ import type { ReducersMapObject } from '@reduxjs/toolkit';
 
 const staticReducers = {
   map,
+  layers,
+  activeDatasets,
 };
 
 const asyncReducers = {};
