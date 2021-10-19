@@ -15,6 +15,7 @@ module.exports = {
         sans: ['Lato', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
+        'rw-pink': '#c32d7b',
         'rw-gray': '#393f44',
       },
     },
