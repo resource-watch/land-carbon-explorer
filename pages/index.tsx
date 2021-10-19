@@ -100,9 +100,14 @@ const Home: React.FC = () => {
 
   const onChangeLayer = useCallback(() => {}, []);
 
-  const onRemoveLayer = useCallback((layer) => {
-    dispatch(setActiveDatasets(activeDatasets.filter((datasetId) => datasetId !== layer.dataset)));
-  }, [activeDatasets]);
+  const onRemoveLayer = useCallback(
+    (layer) => {
+      dispatch(
+        setActiveDatasets(activeDatasets.filter((datasetId) => datasetId !== layer.dataset))
+      );
+    },
+    [activeDatasets]
+  );
 
   const { data: datasets } = useFetchDatasets(
     {},
