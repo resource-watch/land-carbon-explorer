@@ -17,6 +17,7 @@ module.exports = {
       colors: {
         'rw-pink': '#c32d7b',
         'rw-gray': '#393f44',
+        'rw-gray-2': '#717171'
       },
     },
   },
