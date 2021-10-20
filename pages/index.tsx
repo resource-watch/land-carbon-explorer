@@ -159,7 +159,7 @@ const Home: React.FC = () => {
       </Head>
       <div className="flex flex-col h-screen">
         <Sidebar />
-        <div className="absolute top-0 left-72 right-0 h-full">
+        <div className="absolute top-0 left-80 right-0 h-full">
           <Map
             mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
             viewport={viewport}

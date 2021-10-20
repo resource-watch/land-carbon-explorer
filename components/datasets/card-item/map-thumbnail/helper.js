@@ -1,9 +1,8 @@
 const BASEMAP_QUERY = 'SELECT the_geom_webmercator FROM gadm28_countries';
-const BASEMAP_CARTOCSS = '#gadm28_countries { polygon-fill: #bbbbbb; polygon-opacity: 1; line-color: #FFFFFF; line-width: 0.5; line-opacity: 0.5; }';
+const BASEMAP_CARTOCSS =
+  '#gadm28_countries { polygon-fill: #bbbbbb; polygon-opacity: 1; line-color: #FFFFFF; line-width: 0.5; line-opacity: 0.5; }';
 
-export const getImageFromCarto = ({
-  width, height, zoom, lat, lng, layerConfig,
-}) => {
+export const getImageFromCarto = ({ width, height, zoom, lat, lng, layerConfig }) => {
   if (!layerConfig) throw Error('layerConfig param is required');
   if (!layerConfig.body) throw Error('layerConfig does not have body param');
 
@@ -42,22 +41,22 @@ export const getImageFromMapService = ({ width, height, layerConfig }) => {
   return result;
 };
 
-export const getBasemapImage = ({
-  width, height, zoom, lat, lng, format, layerSpec,
-}) => {
+export const getBasemapImage = ({ width, height, zoom, lat, lng, format, layerSpec }) => {
   const basemapSpec = {
     account: 'wri-01',
     body: {
       maxzoom: 18,
       minzoom: 3,
-      layers: [{
-        type: 'mapnik',
-        options: {
-          sql: BASEMAP_QUERY,
-          cartocss: BASEMAP_CARTOCSS,
-          cartocss_version: '2.3.0',
+      layers: [
+        {
+          type: 'mapnik',
+          options: {
+            sql: BASEMAP_QUERY,
+            cartocss: BASEMAP_CARTOCSS,
+            cartocss_version: '2.3.0',
+          },
         },
-      }],
+      ],
     },
   };
 
@@ -73,12 +72,20 @@ export const getBasemapImage = ({
     })
     .then((data) => {
       const { layergroupid } = data;
-      if (layerSpec.provider === 'gee'
-        || layerSpec.provider === 'nexgddp'
-        || layerSpec.provider === 'leaflet') {
-        return `https://${data.cdn_url.https}/${account}/api/v1/map/${layergroupid}/0/0/0.${format || 'png'}`;
+      if (
+        layerSpec.provider === 'gee' ||
+        layerSpec.provider === 'nexgddp' ||
+        layerSpec.provider === 'leaflet'
+      ) {
+        return `https://${data.cdn_url.https}/${account}/api/v1/map/${layergroupid}/0/0/0.${
+          format || 'png'
+        }`;
       }
-      return `https://${data.cdn_url.https}/${account}/api/v1/map/static/center/${layergroupid}/${zoom}/${lat}/${lng}/${width}/${height}.${format || 'png'}`;
+      return `https://${
+        data.cdn_url.https
+      }/${account}/api/v1/map/static/center/${layergroupid}/${zoom}/${lat}/${lng}/${width}/${height}.${
+        format || 'png'
+      }`;
     });
 };
 
@@ -93,30 +100,10 @@ export const getImageForGEE = ({ layerSpec }) => {
   return tile;
 };
 
-export const getImageForLeaflet = ({ layerSpec }) => {
-  const { layerConfig } = layerSpec;
+export const getImageForLeaflet = ({ layerSpec }) =>
+  layerSpec?.source?.tiles?.[0].replace('{z}', '0').replace('{x}', '0').replace('{y}', '0');
 
-  if (!layerConfig) throw Error('layerConfig param is required');
-  if (!layerConfig.body) throw Error('layerConfig does not have body param');
-
-  if (layerConfig.type !== 'tileLayer') {
-    return null;
-  }
-
-  if (!layerConfig.url || (layerConfig.body && !layerConfig.body.url)) {
-    return null;
-  }
-
-  const url = layerConfig.url || layerConfig.body.url;
-
-  const tile = url.replace('{z}', '0').replace('{x}', '0').replace('{y}', '0');
-
-  return tile;
-};
-
-export const getLayerImage = async ({
-  width, height, zoom, lat, lng, layerSpec,
-}) => {
+export const getLayerImage = async ({ width, height, zoom, lat, lng, layerSpec }) => {
   if (!layerSpec) throw Error('No layerSpec specified.');
 
   const { layerConfig, provider } = layerSpec;
@@ -126,7 +113,12 @@ export const getLayerImage = async ({
     case 'carto':
       try {
         result = await getImageFromCarto({
-          width, height, zoom, lat, lng, layerConfig,
+          width,
+          height,
+          zoom,
+          lat,
+          lng,
+          layerConfig,
         });
       } catch (e) {
         result = null;
@@ -135,7 +127,12 @@ export const getLayerImage = async ({
     case 'cartodb':
       try {
         result = await getImageFromCarto({
-          width, height, zoom, lat, lng, layerConfig,
+          width,
+          height,
+          zoom,
+          lat,
+          lng,
+          layerConfig,
         });
       } catch (e) {
         result = null;
