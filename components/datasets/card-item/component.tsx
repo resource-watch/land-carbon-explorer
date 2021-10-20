@@ -52,7 +52,7 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
         minHeight: 130,
       }}
     >
-      <div className="flex w-3/6 relative">
+      <div className="flex flex-grow w-3/6 relative">
         <MapThumbnail layerSpec={layer} />
       </div>
 
