@@ -1,5 +1,6 @@
 import { useCallback, useState, useMemo, useEffect } from 'react';
 
+import ReactMarkdown from 'react-markdown';
 import { useDispatch } from 'react-redux';
 
 import flatten from 'lodash/flatten';
@@ -214,8 +215,8 @@ const Home: React.FC = () => {
         onDismiss={() => setModalContent(DEFAULT_MODAL_STATE)}
         title={modalContent.title}
       >
-        <div className="p-6">
-          <p>{modalContent.content}</p>
+        <div className="p-6 overflow-y-auto">
+          <ReactMarkdown>{modalContent.content}</ReactMarkdown>
         </div>
       </Modal>
       <Icons />
