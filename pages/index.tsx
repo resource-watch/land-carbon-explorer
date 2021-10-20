@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import flatten from 'lodash/flatten';
 
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import { setActiveDatasets } from 'store/features/datasets';
 import { setLayerParams } from 'store/features/layers';
@@ -30,6 +31,7 @@ import BasemapControls from 'components/map/controls/basemap';
 import ZoomControls from 'components/map/controls/zoom';
 import Modal from 'components/modal';
 import Sidebar from 'components/sidebar';
+import { GAPage } from 'lib/analytics/ga';
 import { AppDispatch } from 'store';
 import { getLayerGroups } from 'utils/layers';
 
@@ -39,6 +41,7 @@ const DEFAULT_MODAL_STATE = {
 };
 
 const Home: React.FC = () => {
+  const { pathname } = useRouter();
   const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
   const [modalContent, setModalContent] = useState(DEFAULT_MODAL_STATE);
   const [layersOrder, setLayersOrder] = useState([]);
@@ -151,6 +154,10 @@ const Home: React.FC = () => {
 
     dispatch(setActiveDatasets(newActiveDatasets));
   }, [datasets]);
+
+  useEffect(() => {
+    GAPage(pathname);
+  }, [pathname]);
 
   return (
     <>
