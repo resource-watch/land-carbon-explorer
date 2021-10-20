@@ -157,9 +157,9 @@ const Home: React.FC = () => {
       <Head>
         <title>Land Carbon Explorer</title>
       </Head>
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-screen relative">
         <Sidebar />
-        <div className="absolute top-0 left-80 right-0 h-full">
+        <div className="absolute top-0 left-0 right-0 h-full">
           <Map
             mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
             viewport={viewport}
@@ -189,7 +189,7 @@ const Home: React.FC = () => {
               onChangeBoundaries={handleBoundaries}
             />
           </div>
-          <div className="z-10 absolute bottom-10 left-5">
+          <div className="z-10 absolute bottom-10 right-5">
             <Legend maxHeight={300} onChangeOrder={onChangeOrder}>
               {layerGroups.map((lg, i) => (
                 <LegendListItem

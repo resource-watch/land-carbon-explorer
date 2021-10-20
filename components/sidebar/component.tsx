@@ -1,10 +1,25 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
+
+import { useDispatch } from 'react-redux';
+
+import cx from 'classnames';
+
+import { setSidebar } from 'store/features/ui/sidebar';
+import { useAppSelector } from 'store/hooks';
 
 import { useFetchDatasets } from 'hooks/dataset';
 
 import DatasetCardList from 'components/datasets/card-list';
+import Icon from 'components/icon';
+import { AppDispatch } from 'store';
+
+import ARROW_LEFT_SVG from 'svgs/ui/arrow-left.svg?sprite';
+import ARROW_RIGHT_SVG from 'svgs/ui/arrow-right.svg?sprite';
 
 export const Sidebar: FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const isSidebarOpen = useAppSelector((state) => state.sidebar.isOpen);
+
   const { data: datasets } = useFetchDatasets(
     {},
     {
@@ -12,9 +27,27 @@ export const Sidebar: FC = () => {
     }
   );
 
+  const handleClick = useCallback(() => {
+    dispatch(setSidebar(!isSidebarOpen));
+  }, [isSidebarOpen]);
+
   return (
-    <div className="w-80 h-full bg-white z-10 p-4 overflow-y-auto">
-      <DatasetCardList list={datasets} />
+    <div
+      className={cx({
+        'w-80 h-full bg-white z-10 absolute transition transform translate-x-0': true,
+        '-translate-x-full': isSidebarOpen,
+      })}
+    >
+      <button
+        onClick={handleClick}
+        type="button"
+        className="absolute bg-rw-gray-3  text-white -right-7 top-5 z-50 py-3 px-2 focus:outline-none"
+      >
+        <Icon icon={isSidebarOpen ? ARROW_RIGHT_SVG : ARROW_LEFT_SVG} className="w-3" />
+      </button>
+      <div className="p-4 overflow-y-auto h-full">
+        <DatasetCardList list={datasets} />
+      </div>
     </div>
   );
 };
