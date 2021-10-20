@@ -104,7 +104,6 @@ export const getImageForLeaflet = ({ layerSpec }) =>
   layerSpec?.source?.tiles?.[0].replace('{z}', '0').replace('{x}', '0').replace('{y}', '0');
 
 export const getLayerImage = async ({ width, height, zoom, lat, lng, layerSpec }) => {
-  console.log('layerSpec', layerSpec);
   if (!layerSpec) throw Error('No layerSpec specified.');
 
   const { layerConfig, provider } = layerSpec;
