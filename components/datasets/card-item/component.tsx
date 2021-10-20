@@ -34,6 +34,9 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
     [activeDatasets, dataset]
   );
 
+  console.log('dataset', dataset);
+  console.log('layer', layer);
+
   const handleClick = useCallback(() => {
     if (isDatasetActive)
       dispatch(setActiveDatasets(activeDatasets.filter((datasetId) => datasetId !== dataset.id)));
