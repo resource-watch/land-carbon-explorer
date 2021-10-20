@@ -216,9 +216,7 @@ const Home: React.FC = () => {
         title={modalContent.title}
       >
         <div className="p-6 overflow-y-auto">
-          <ReactMarkdown>
-            {modalContent.content}
-          </ReactMarkdown>
+          <ReactMarkdown>{modalContent.content}</ReactMarkdown>
         </div>
       </Modal>
       <Icons />
