@@ -52,12 +52,12 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
         minHeight: 130,
       }}
     >
-      <div className="flex flex-grow w-3/6 relative">
+      <div className="flex flex-grow relative">
         <MapThumbnail layerSpec={layer} />
       </div>
 
       {/* INFO */}
-      <div className="flex-1 flex-col flex-grow justify-between p-2 w-3/6">
+      <div className="flex-1 flex-col flex-grow justify-between p-2">
         <div className="flex justify-between">
           {/* Source */}
           <div className="text-xs font-bold text-rw-gray-2" title={metadata?.[0]?.source}>
