@@ -52,12 +52,12 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
         minHeight: 130,
       }}
     >
-      <div className="flex w-9/12 relative">
+      <div className="flex w-3/6 relative">
         <MapThumbnail layerSpec={layer} />
       </div>
 
       {/* INFO */}
-      <div className="flex flex-col justify-between p-2">
+      <div className="flex-1 flex-col flex-grow justify-between p-2 w-3/6">
         <div className="flex justify-between">
           {/* Source */}
           <div className="text-xs font-bold text-rw-gray-2" title={metadata?.[0]?.source}>
@@ -75,7 +75,7 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
           <button
             type="button"
             className={classnames({
-              'w-full mt-6 px-8 py-1 rounded bg-transparent text-sm antialiased border-rw-pink border focus:outline-none':
+              'w-full mt-6 px-8 py-1 rounded bg-transparent text-sm antialiased border-rw-pink border focus:outline-none whitespace-nowrap':
                 true,
               'bg-rw-pink text-white': isDatasetActive,
               'text-rw-pink': !isDatasetActive,
