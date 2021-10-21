@@ -25,17 +25,18 @@ import {
 
 import { useFetchDatasets } from 'hooks/dataset';
 
+import Icon from 'components/icon';
 import Map from 'components/map';
 import { DEFAULT_VIEWPORT } from 'components/map/constants';
 import BasemapControls from 'components/map/controls/basemap';
 import ZoomControls from 'components/map/controls/zoom';
-import Icon from 'components/icon';
 import Modal from 'components/modal';
 import Sidebar from 'components/sidebar';
 import { GAPage } from 'lib/analytics/ga';
 import { AppDispatch } from 'store';
-import RW_LOGO_SVG from 'svgs/rw-logo.svg?sprite';
 import { getLayerGroups } from 'utils/layers';
+
+import RW_LOGO_SVG from 'svgs/rw-logo.svg?sprite';
 
 const DEFAULT_MODAL_STATE = {
   title: null,
@@ -171,7 +172,8 @@ const Home: React.FC = () => {
         className="bg-rw-pink bg-no-repeat bg-center bg-cover"
         style={{
           height: 75,
-          backgroundImage: 'url(/images/header-bg-texture.png), linear-gradient(86deg,rgba(195,45,123,.8),rgba(201,14,57,.7))'
+          backgroundImage:
+            'url(/images/header-bg-texture.png), linear-gradient(86deg,rgba(195,45,123,.8),rgba(201,14,57,.7))',
         }}
       >
         <div className="md:max-w-screen-md xl:max-w-screen-xl m-auto flex items-center justify-between h-full">
@@ -188,13 +190,20 @@ const Home: React.FC = () => {
           <nav>
             <ul>
               <li>
-                <a target="_blank" rel="noopener noreferrer" href="https://landcarbonlab.org/contact-us" className="text-white hover:text-rw-yellow">Contact</a>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://landcarbonlab.org/contact-us"
+                  className="text-white hover:text-rw-yellow"
+                >
+                  Contact
+                </a>
               </li>
             </ul>
           </nav>
         </div>
       </div>
-      <div className="flex flex-col relative" style={{ height: 'calc(100vh - 75px)'}}>
+      <div className="flex flex-col relative" style={{ height: 'calc(100vh - 75px)' }}>
         <Sidebar />
         <div className="absolute top-0 left-0 right-0 h-full">
           <Map
