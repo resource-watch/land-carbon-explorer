@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-
 // Define the initial state using that type
 const initialState: string[] = [];
 
