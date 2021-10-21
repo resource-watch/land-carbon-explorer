@@ -51,7 +51,7 @@ export const Sidebar: FC = () => {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="http://landcarbonlab.wri.org/"
+            href="https://landcarbonlab.org/"
             className="text-rw-pink"
           >
             Land & Carbon Lab
