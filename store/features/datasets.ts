@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+
 // Define the initial state using that type
-const initialState = [];
+const initialState: string[] = [];
 
 export const datasetsSlice = createSlice({
   name: 'datasets',

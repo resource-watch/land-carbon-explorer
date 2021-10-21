@@ -42,10 +42,16 @@ const DEFAULT_MODAL_STATE = {
   title: null,
   content: null,
 };
+export interface ViewPortTypes {
+  zoom?: number;
+  pitch?: number;
+  longitude?: number;
+  latitude: number;
+}
 
 const Home: React.FC = () => {
-  const { pathname } = useRouter();
-  const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
+  const router = useRouter();
+
   const [modalContent, setModalContent] = useState(DEFAULT_MODAL_STATE);
   const [layersOrder, setLayersOrder] = useState([]);
   const dispatch: AppDispatch = useDispatch();
@@ -54,6 +60,12 @@ const Home: React.FC = () => {
   const boundaries = useAppSelector((state) => state.map.boundaries);
   const layerParams = useAppSelector((state) => state.layers);
   const activeDatasets = useAppSelector((state) => state.activeDatasets);
+  const {
+    pathname,
+    query,
+  } = router;
+  console.log('query', query);
+  const [viewport, setViewport] = useState<ViewPortTypes>(DEFAULT_VIEWPORT);
 
   const handleViewport = useCallback((_viewport) => {
     setViewport(_viewport);
@@ -161,6 +173,32 @@ const Home: React.FC = () => {
   useEffect(() => {
     GAPage(pathname);
   }, [pathname]);
+
+  useEffect(() => {
+    setViewport({
+      ...query.lat && { latitude: +query.lat },
+      ...query.lng && { longitude: +query.lng },
+      ...query.zoom && { zoom: +query.zoom },
+    })
+  }, [query]);
+
+  // useEffect(() => {
+  //   const { longitude, latitude, zoom } = viewport;
+  //   router.push({
+  //     pathname: '/',
+  //     query: {
+  //       lat: latitude,
+  //       lng: longitude,
+  //       zoom,
+  //       // datasets: (activeDatasets as string[]).split(','),
+  //     },
+  //   },
+  //   `/?lat=${latitude}&lng=${longitude}&zoom=${zoom}`,
+  //   {
+  //     shallow: true,
+  //   }
+  //   )
+  // }, [viewport]);
 
   return (
     <>
