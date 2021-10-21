@@ -310,16 +310,7 @@ const Home: React.FC = () => {
           </a>
           <nav>
             <ul>
-              <li>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://landcarbonlab.org/contact-us"
-                  className="text-white hover:text-rw-yellow no-underline"
-                >
-                  Contact
-                </a>
-              </li>
+              <li />
             </ul>
           </nav>
         </div>
