@@ -45,8 +45,13 @@ export const Sidebar: FC = () => {
       >
         <Icon icon={isSidebarOpen ? ARROW_RIGHT_SVG : ARROW_LEFT_SVG} className="w-3" />
       </button>
-      <div className="p-4 overflow-y-auto h-full">
-        <DatasetCardList list={datasets} />
+      <div className="p-4 h-full overflow-y-auto pb-3">
+        <p>
+          Developed in partnership with the <a target="_blank" rel="noopener noreferrer" href="http://landcarbonlab.wri.org/" className="text-rw-pink">Land & Carbon Lab</a>
+        </p>
+        <div className="h-full mt-5">
+          <DatasetCardList list={datasets} />
+        </div>
       </div>
     </div>
   );
