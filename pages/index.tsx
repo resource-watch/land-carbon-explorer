@@ -165,7 +165,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Land and Carbon Lab Explorer</title>
+        <title>Global Land Cover Change Explorer</title>
         <meta name="description" content="Explore global high-resolution land cover change data" />
       </Head>
       <div
