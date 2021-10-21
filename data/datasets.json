@@ -166,22 +166,22 @@
                   },
                   {
                     "color": "#f59fc8",
-                    "name": "Small Net Forest Height Gain (5-10m gain)",
+                    "name": "Small Net Forest Height Loss (5-10m gain)",
                     "id": 3
                   },
                   {
                     "color": "#dc5796",
-                    "name": "Large Net Forest Height Gain (10+m gain)",
+                    "name": "Large Net Forest Height Loss (10+m gain)",
                     "id": 4
                   },
                   {
                     "color": "#a280ff",
-                    "name": "Small Net Forest Height Loss (5-10m loss)",
+                    "name": "Small Net Forest Height Gain (5-10m loss)",
                     "id": 5
                   },
                   {
                     "color": "#4600ff",
-                    "name": "Large Net Forest Height Loss (10+m loss)",
+                    "name": "Large Net Forest Height Gain (10+m loss)",
                     "id": 6
                   }
                 ],
@@ -258,7 +258,7 @@
               "layerConfig": {},
               "source": {
                 "tiles": [
-                  "https://storage.googleapis.com/lcl_tiles/GLCLU12020/water/{z}/{x}/{y}.png"
+                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/water/{z}/{x}/{y}.png"
                 ],
                 "minzoom": 1,
                 "maxzoom": 12
@@ -365,7 +365,7 @@
               "layerConfig": {},
               "source": {
                 "tiles": [
-                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020//cropland/{z}/{x}/{y}.png"
+                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/cropland/{z}/{x}/{y}.png"
                 ],
                 "minzoom": 1,
                 "maxzoom": 12
@@ -462,7 +462,7 @@
               "layerConfig": {},
               "source": {
                 "tiles": [
-                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020//snow/{z}/{x}/{y}.png"
+                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/snow/{z}/{x}/{y}.png"
                 ],
                 "minzoom": 1,
                 "maxzoom": 12
