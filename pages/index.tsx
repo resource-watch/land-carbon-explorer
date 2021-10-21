@@ -144,9 +144,130 @@ const Home: React.FC = () => {
     (layer) => {
       const datasetMetadata = datasets.find(({ id }) => id === layer.dataset)?.metadata;
 
+      const { name, source, description, info } = datasetMetadata?.[0];
+
+      const {
+        technical_title: techincalTitle,
+        sources,
+        functions,
+        cautions,
+        citations,
+        license,
+        license_link: licenseLink,
+        spatial_resolution: spatialResolution,
+        date_of_content: dateOfContent,
+        geographic_coverage: geographicCoverage,
+        learn_more_link: learnMoreLink,
+        data_download_original_link: dataDownloadOriginalLink,
+        data_download_link: dataDownloadLink,
+      } = info;
+
       setModalContent({
-        title: datasetMetadata?.[0]?.name,
-        content: datasetMetadata?.[0]?.description,
+        title: name,
+        content: (
+          <div>
+            <h2>{name}</h2>
+            <p className="text-xs">SOURCE: {source}</p>
+
+            {functions && <p>{functions}</p>}
+
+            <p>
+              <ul>
+                <li>
+                  {(dataDownloadLink || dataDownloadOriginalLink) && (
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={dataDownloadLink || dataDownloadOriginalLink}
+                    >
+                      Download
+                    </a>
+                  )}
+                </li>
+                <li>
+                  {learnMoreLink && (
+                    <a target="_blank" rel="noopener noreferrer" href={learnMoreLink}>
+                      Learn more from source
+                    </a>
+                  )}
+                </li>
+              </ul>
+            </p>
+            {description && <ReactMarkdown>{description}</ReactMarkdown>}
+
+            <h3>Further Information</h3>
+
+            {techincalTitle && (
+              <div>
+                <h4>Formal Name</h4>
+                <p>{techincalTitle}</p>
+              </div>
+            )}
+
+            {cautions && (
+              <div>
+                <h4>Cautions</h4>
+                <ReactMarkdown>{cautions}</ReactMarkdown>
+              </div>
+            )}
+
+            {citations && (
+              <div>
+                <h4>Suggested Citation</h4>
+                <ReactMarkdown>{citations}</ReactMarkdown>
+              </div>
+            )}
+
+            {spatialResolution && (
+              <div>
+                <h4>Spatial Resolution</h4>
+                <p>{spatialResolution}</p>
+              </div>
+            )}
+
+            {sources.length && (
+              <div>
+                <h4>Sources</h4>
+                <p>
+                  <ul>
+                    {sources.map((sourceMeta) => (
+                      <li>{sourceMeta['source-name'] || sourceMeta['source-description']}</li>
+                    ))}
+                  </ul>
+                </p>
+              </div>
+            )}
+
+            {license && (
+              <div>
+                <h4>License</h4>
+                <p>
+                  {licenseLink ? (
+                    <a target="_blank" rel="noreferrer noopener" href={licenseLink}>
+                      {license}
+                    </a>
+                  ) : (
+                    license
+                  )}
+                </p>
+              </div>
+            )}
+
+            {dateOfContent && (
+              <div>
+                <h4>Date of content</h4>
+                <p>{dateOfContent}</p>
+              </div>
+            )}
+
+            {geographicCoverage && (
+              <div>
+                <h4>Geographic coverage</h4>
+                <p>{geographicCoverage}</p>
+              </div>
+            )}
+          </div>
+        ),
       });
     },
     [datasets]
@@ -169,7 +290,7 @@ const Home: React.FC = () => {
         <meta name="description" content="Explore global high-resolution land cover change data" />
       </Head>
       <div
-        className="bg-rw-pink bg-no-repeat bg-center bg-cover"
+        className="bg-rw-pink bg-no-repeat bg-center bg-cover pl-4 pr-4"
         style={{
           height: 75,
           backgroundImage:
@@ -194,7 +315,7 @@ const Home: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://landcarbonlab.org/contact-us"
-                  className="text-white hover:text-rw-yellow"
+                  className="text-white hover:text-rw-yellow no-underline"
                 >
                   Contact
                 </a>
@@ -261,9 +382,7 @@ const Home: React.FC = () => {
         onDismiss={() => setModalContent(DEFAULT_MODAL_STATE)}
         title={modalContent.title}
       >
-        <div className="p-6 overflow-y-auto">
-          <ReactMarkdown>{modalContent.content}</ReactMarkdown>
-        </div>
+        <div className="p-6 overflow-y-auto">{modalContent.content}</div>
       </Modal>
       <Icons />
     </>
