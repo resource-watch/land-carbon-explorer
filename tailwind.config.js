@@ -19,6 +19,7 @@ module.exports = {
         'rw-gray': '#393f44',
         'rw-gray-2': '#717171',
         'rw-gray-3': 'hsla(0,0%,44.3%,.8)',
+        'rw-yellow': '#fab72e',
       },
       boxShadow: {
         rw: '0 0 0 2px #c32d7b, 0 20px 30px rgba(0,0,0,.2)',
