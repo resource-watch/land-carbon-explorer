@@ -48,14 +48,10 @@ export const Sidebar: FC = () => {
       <div className="p-4 h-full overflow-y-auto pb-3">
         <p>
           Developed in partnership with the{' '}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://landcarbonlab.org/"
-            className="text-rw-pink"
-          >
+          <a target="_blank" rel="noopener noreferrer" href="https://landcarbonlab.org/">
             Land & Carbon Lab
           </a>
+          .
         </p>
         <div className="h-full mt-5">
           <DatasetCardList list={datasets} />
