@@ -2,6 +2,97 @@
   "data": [
     {
       "type": "dataset",
+      "id": "cropland-extent-and-change",
+      "attributes": {
+        "name": "[internal] Cropland extent and change",
+        "active": true,
+        "subtitle": "",
+        "metadata": [
+          {
+            "id": "61561bfbd32fb1001aad822a",
+            "type": "metadata",
+            "attributes": {
+              "language": "en",
+              "name": "Cropland Change",
+              "description": "### Overview  \n  \n_**The Cropland extent and change data is still a draft product and data are subject to change in the future.**_\n  \n  \nThe Cropland Extent and Change dataset at 30 metres spatial resolution was developed by the Global Land Analysis and Discovery Lab  (GLAD) at the University of Maryland (UMD) using Landsat satellite data time-series.Cropland is defined as land used to produce herbaceous crops for human consumption, forage and biofuel. Perennial woody crops, permanent pastures, and shifting cultivation are excluded from the definition. The fallow length is limited to four years for the cropland class. The map is based on the machine learning classification of the global Landsat data archive using locally calibrated models. Model calibration data were collected through visual interpretation of Landsat and high spatial resolution satellite images. The mapping was performed for the 2000-2003 and 2016-2019 time intervals. For each four-year interval, a 30x30 metres pixel was mapped as cropland if a growing crop was detected during any of these years. Cropland patches below 0.5 hectares were excluded from the final map. The cropland change refers to areas with cropland establishment (gain) and cropland abandonment or conversion to other land uses (loss) between 2000-2003 and 2016-2019 time intervals.\n\n  \n  \nGlobal population growth and increasing standards of living inevitably cause the expansion and intensification of global agricultural land use to fulfill growing demands for food, biofuel, and other commodities. In turn, agriculture expansion and intensification threaten ecosystem functioning and lead to species extinction through habitat loss and fragmentation. The [United Nations 2030 Sustainable Development Goals (SDGs)](https://www.undp.org/sustainable-development-goals) call for balancing increasing agricultural production with maintenance of ecosystem services. Implementation of SDG’s to improve food security, protect freshwater and terrestrial ecosystems, and mitigate climate change require national policies and international cooperation that are based on consistent, independent, and timely data on agriculture extent and productivity. The Cropland Extent and Change dataset can serve as a tool for monitoring national and global progress towards SDG’s.\n\n  \n  \nThe GLAD laboratory in the Department of Geographical Sciences at UMD investigates methods, causes and impacts of global land surface change.  Earth observation imagery are the primary data source and land cover extent and change the primary topic of interest. GLAD aspires to generate new science insights concerning land resources, educate the next generation of remote sensing-based land change scientists, and disseminate land monitoring capabilities to operational settings nationally and internationally.\n  \n  \n### Methodology  \n  \nCropland is defined as land used for the production of annual and perennial herbaceous crops for human consumption, forage (including hay), and biofuel. Perennial woody crops, permanent pastures, and shifting cultivation are excluded from the definition. The fallow length is limited to four years for the cropland class. The cropland class definition is largely consistent with the arable land category reported by the [Food and Agriculture Organization (FAO) of the United Nations](https://www.fao.org/3/Y4171E/Y4171E20.htm).\r\n\r\n  \n  \nThe analysis was performed in four-year epochs, 2000-2003 and 2016-2019. One cropland map per epoch was created, named by the last year of the interval (e.g., the 2019 map represents the 2016-2019 epoch). Using a four-year interval (rather than a single year) increased the number of clear-sky satellite observations in the time-series, which improves the representation of land surface phenology and the accuracy of cropland detection. For each four-year interval, an area was mapped as cropland if a growing crop was detected during any of these years. This way, the criterion of the maximum fallow length was implemented: if an area was not used as cropland for more than four years, it was not included in the cropland map for the corresponding time interval.\r\n\r\n  \n  \nThe global 16-day normalized surface reflectance Landsat Analysis Ready Data (Landsat ARD) was employed as input data for cropland mapping [(Potapov et al., 2020)](https://www.mdpi.com/2072-4292/12/3/426). For each four-year interval, a single annualized gap-free 16-day observation time-series was created. For each 16-day interval, the observation with the highest near-infrared reflectance value was selected(to prioritize observations with the highest vegetation cover) from four years of Landsat data. The annualized 16-day time-series within each four-year interval was transformed into a set of multitemporal metrics that provide consistent land surface phenology inputs for global cropland mapping. Metrics include selected ranks, inter-rank averages, and amplitudes of surface reflectance and vegetation indices values, and surface reflectance averages for selected land surface phenology stages defined by vegetation indices (i.e., surface reflectance for the maximum and minimum greenness periods). The Landsat metrics were augmented with elevation data. \r\n\r\n  \n  \nGlobal cropland mapping included three stages that enabled extrapolation of visually delineated cropland training data to a temporally consistent global cropland map time-series using machine learning. At all three stages, a bagged decision tree ensembles was employed as a supervised classification algorithm that uses class presence and absence data as the dependent variable and a set of multitemporal metrics as independent variables at a Landsat ARD pixel scale. The first stage consisted of performing individual cropland classifications for a set of 924 Landsat ARD 1°×1° tiles for the 2016-2019 interval. The tiles were chosen to represent diverse global agriculture landscapes. Classification training data (cropland class presence and absence) were manually selected through visual interpretation of Landsat metric composites and high-resolution data from Google Earth. At the second stage, the 924 tiles that had been classified as cropland/other land and the 2016-2019 metric set were used to train a series of regional cropland mapping models. The classification was iterated by adding training tiles and assessing the results until the resulting map was satisfactory. At the third stage, the preliminary global cropland maps were used as training data to generate temporally consistent global cropland data. The goal of this third stage was to create a robust spatiotemporally consistent set of locally calibrated cropland detection models. For each 1°×1° Landsat ARD tile (13,451 tiles total) training data for each four-year interval was collected from the preliminary cropland extent maps within a 3° radius of the target tile, with preference to select stable cropland and non-cropland pixels as training. Training data from all intervals were used to calibrate a single decision tree ensemble for each ARD tile. The per-tile models were then applied to each time interval, and the results were post-processed to remove single cropland class detections and omissions within time-series and eliminate cropland patches below 0.5 ha. Manual masks to remove map artifacts (e.g., cropland overestimation over temperate wetlands and flooded grasslands) were applied in some regions to improve the final map.\r\n\r\n\r\nFor the full documentation, please click on the “Learn more” button.\r\n  \n  \n### Additional Information  \n  \nResource Watch shows only a subset of the dataset. For access to the full dataset and additional information, click on the “Learn more” button.  \n  \n### Visualizing the Data  \n  \nOur team reformatted this dataset before displaying it on Resource Watch.   \n  \n### Disclaimer  \n  \nExcerpts of this description page were taken from the source metadata.",
+              "source": "UMD",
+              "info": {
+                "rwId": "foo.065.rw0",
+                "data_type": "Raster",
+                "name": "Cropland Change",
+                "sources": [
+                  {
+                    "source-name": "",
+                    "id": 0,
+                    "source-description": "University of Maryland (UMD)"
+                  }
+                ],
+                "technical_title": "Global cropland extent and change, 2003-2019",
+                "functions": "[Draft] Cropland stability, gain and loss from 2000-2003 and 2016-2019\r\n",
+                "cautions": "  \n  \n- A probability-based sample analysis is the recommended good practice approach to estimating land cover and land use extent and change. The global land cover map time-series enables a higher sampling efficiency through stratification at the sub-national, national, and global scales. The maps should not be used as the only source data for national and international reporting due to unknown map uncertainty that may vary in space and between time intervals.\r\n  \n  \n- Cropland maps have higher accuracy in regions dominated by large-scale industrial farming, e.g. North and South America. In Europe, Asia, and Africa, the global map may underestimate small-scale cropland areas due to Landsat spatial resolution limitations in mapping heterogeneous landscapes.\r\n  \n  \n- Cropland class may be confused with the intensively managed permanent pastures as both classes have similar spectral response and phenology. This issue may cause an overestimation of cropland area in Australia, New Zealand, and parts of Western Europe.\r\n  \n  \n- Dryland rainfed agriculture and summer wheat production areas, especially when intermittent with long fallow, may be partially omitted in Central Asia and the Middle East. The short vegetation season and the lack of cloud-free Landsat data in some years may preclude dryland agriculture detection.\r\n  \n  \n- Croplands that were repeatedly abandoned and recultivated may be inconsistently mapped as cropland loss or gain.\r\n\r",
+                "citation": "(1) P. Potapov, S. Turubanova, M.C. Hansen, A. Tyukavina, V. Zalles, A. Khan, X.-P. Song, A. Pickens, Q. Shen, J. Cortez. (2021) Accelerated expansion of global cropland extent in the 21st century. In Review. Accessed through Resource Watch, (date). [www.resourcewatch.org](https://www.resourcewatch.org).\r",
+                "license": null,
+                "license_link": null,
+                "geographic_coverage": "Global",
+                "spatial_resolution": "30 m",
+                "date_of_content": "2000-2003, 2016-2019",
+                "frequency_of_updates": "Unknown",
+                "learn_more_link": "https://www.researchsquare.com/article/rs-294463/v1",
+                "data_download_link": null,
+                "data_download_original_link": "https://www.researchsquare.com/article/rs-294463/v1"
+              },
+              "columns": {},
+              "createdAt": "2021-09-30T20:20:11.559Z",
+              "updatedAt": "2021-10-19T18:42:03.966Z",
+              "status": "published"
+            }
+          }
+        ],
+        "layer": [
+          {
+            "type": "layer",
+            "id": "croplad-extend-change",
+            "attributes": {
+              "name": "2000-2003 to 2016-2019 Cropland Change",
+              "dataset": "cropland-extent-and-change",
+              "description": "Stable cropland presence and absence, cropland change (gain and loss) between two epochs: 2000-2003 and 2016-2019. The cropland change refers to areas with cropland establishment (gain) and cropland abandonment or conversion to other land uses (loss) between 2000-2003 and 2016-2019 time intervals.",
+              "provider": "leaflet",
+              "type": "raster",
+              "layerConfig": {},
+              "source": {
+                "tiles": [
+                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/cropland/{z}/{x}/{y}.png"
+                ],
+                "minzoom": 1,
+                "maxzoom": 12
+              },
+              "legendConfig": {
+                "items": [
+                  {
+                    "color": "#FFF183",
+                    "name": "Stable Cropland",
+                    "id": 1
+                  },
+                  {
+                    "color": "#fd8b2d",
+                    "name": "Cropland Loss",
+                    "id": 2
+                  },
+                  {
+                    "color": "#35978f",
+                    "name": "Cropland Gain",
+                    "id": 3
+                  }
+                ],
+                "type": "basic"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "dataset",
       "id": "forest-hight-and-extent",
       "attributes": {
         "name": "[internal] 2000-2020 Forest Height Change",
@@ -200,97 +291,6 @@
                     "color": "#a17247",
                     "name": "Water Loss",
                     "id": 4
-                  }
-                ],
-                "type": "basic"
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "type": "dataset",
-      "id": "cropland-extent-and-change",
-      "attributes": {
-        "name": "[internal] Cropland extent and change",
-        "active": true,
-        "subtitle": "",
-        "metadata": [
-          {
-            "id": "61561bfbd32fb1001aad822a",
-            "type": "metadata",
-            "attributes": {
-              "language": "en",
-              "name": "Cropland Change",
-              "description": "### Overview  \n  \n_**The Cropland extent and change data is still a draft product and data are subject to change in the future.**_\n  \n  \nThe Cropland Extent and Change dataset at 30 metres spatial resolution was developed by the Global Land Analysis and Discovery Lab  (GLAD) at the University of Maryland (UMD) using Landsat satellite data time-series.Cropland is defined as land used to produce herbaceous crops for human consumption, forage and biofuel. Perennial woody crops, permanent pastures, and shifting cultivation are excluded from the definition. The fallow length is limited to four years for the cropland class. The map is based on the machine learning classification of the global Landsat data archive using locally calibrated models. Model calibration data were collected through visual interpretation of Landsat and high spatial resolution satellite images. The mapping was performed for the 2000-2003 and 2016-2019 time intervals. For each four-year interval, a 30x30 metres pixel was mapped as cropland if a growing crop was detected during any of these years. Cropland patches below 0.5 hectares were excluded from the final map. The cropland change refers to areas with cropland establishment (gain) and cropland abandonment or conversion to other land uses (loss) between 2000-2003 and 2016-2019 time intervals.\n\n  \n  \nGlobal population growth and increasing standards of living inevitably cause the expansion and intensification of global agricultural land use to fulfill growing demands for food, biofuel, and other commodities. In turn, agriculture expansion and intensification threaten ecosystem functioning and lead to species extinction through habitat loss and fragmentation. The [United Nations 2030 Sustainable Development Goals (SDGs)](https://www.undp.org/sustainable-development-goals) call for balancing increasing agricultural production with maintenance of ecosystem services. Implementation of SDG’s to improve food security, protect freshwater and terrestrial ecosystems, and mitigate climate change require national policies and international cooperation that are based on consistent, independent, and timely data on agriculture extent and productivity. The Cropland Extent and Change dataset can serve as a tool for monitoring national and global progress towards SDG’s.\n\n  \n  \nThe GLAD laboratory in the Department of Geographical Sciences at UMD investigates methods, causes and impacts of global land surface change.  Earth observation imagery are the primary data source and land cover extent and change the primary topic of interest. GLAD aspires to generate new science insights concerning land resources, educate the next generation of remote sensing-based land change scientists, and disseminate land monitoring capabilities to operational settings nationally and internationally.\n  \n  \n### Methodology  \n  \nCropland is defined as land used for the production of annual and perennial herbaceous crops for human consumption, forage (including hay), and biofuel. Perennial woody crops, permanent pastures, and shifting cultivation are excluded from the definition. The fallow length is limited to four years for the cropland class. The cropland class definition is largely consistent with the arable land category reported by the [Food and Agriculture Organization (FAO) of the United Nations](https://www.fao.org/3/Y4171E/Y4171E20.htm).\r\n\r\n  \n  \nThe analysis was performed in four-year epochs, 2000-2003 and 2016-2019. One cropland map per epoch was created, named by the last year of the interval (e.g., the 2019 map represents the 2016-2019 epoch). Using a four-year interval (rather than a single year) increased the number of clear-sky satellite observations in the time-series, which improves the representation of land surface phenology and the accuracy of cropland detection. For each four-year interval, an area was mapped as cropland if a growing crop was detected during any of these years. This way, the criterion of the maximum fallow length was implemented: if an area was not used as cropland for more than four years, it was not included in the cropland map for the corresponding time interval.\r\n\r\n  \n  \nThe global 16-day normalized surface reflectance Landsat Analysis Ready Data (Landsat ARD) was employed as input data for cropland mapping [(Potapov et al., 2020)](https://www.mdpi.com/2072-4292/12/3/426). For each four-year interval, a single annualized gap-free 16-day observation time-series was created. For each 16-day interval, the observation with the highest near-infrared reflectance value was selected(to prioritize observations with the highest vegetation cover) from four years of Landsat data. The annualized 16-day time-series within each four-year interval was transformed into a set of multitemporal metrics that provide consistent land surface phenology inputs for global cropland mapping. Metrics include selected ranks, inter-rank averages, and amplitudes of surface reflectance and vegetation indices values, and surface reflectance averages for selected land surface phenology stages defined by vegetation indices (i.e., surface reflectance for the maximum and minimum greenness periods). The Landsat metrics were augmented with elevation data. \r\n\r\n  \n  \nGlobal cropland mapping included three stages that enabled extrapolation of visually delineated cropland training data to a temporally consistent global cropland map time-series using machine learning. At all three stages, a bagged decision tree ensembles was employed as a supervised classification algorithm that uses class presence and absence data as the dependent variable and a set of multitemporal metrics as independent variables at a Landsat ARD pixel scale. The first stage consisted of performing individual cropland classifications for a set of 924 Landsat ARD 1°×1° tiles for the 2016-2019 interval. The tiles were chosen to represent diverse global agriculture landscapes. Classification training data (cropland class presence and absence) were manually selected through visual interpretation of Landsat metric composites and high-resolution data from Google Earth. At the second stage, the 924 tiles that had been classified as cropland/other land and the 2016-2019 metric set were used to train a series of regional cropland mapping models. The classification was iterated by adding training tiles and assessing the results until the resulting map was satisfactory. At the third stage, the preliminary global cropland maps were used as training data to generate temporally consistent global cropland data. The goal of this third stage was to create a robust spatiotemporally consistent set of locally calibrated cropland detection models. For each 1°×1° Landsat ARD tile (13,451 tiles total) training data for each four-year interval was collected from the preliminary cropland extent maps within a 3° radius of the target tile, with preference to select stable cropland and non-cropland pixels as training. Training data from all intervals were used to calibrate a single decision tree ensemble for each ARD tile. The per-tile models were then applied to each time interval, and the results were post-processed to remove single cropland class detections and omissions within time-series and eliminate cropland patches below 0.5 ha. Manual masks to remove map artifacts (e.g., cropland overestimation over temperate wetlands and flooded grasslands) were applied in some regions to improve the final map.\r\n\r\n\r\nFor the full documentation, please click on the “Learn more” button.\r\n  \n  \n### Additional Information  \n  \nResource Watch shows only a subset of the dataset. For access to the full dataset and additional information, click on the “Learn more” button.  \n  \n### Visualizing the Data  \n  \nOur team reformatted this dataset before displaying it on Resource Watch.   \n  \n### Disclaimer  \n  \nExcerpts of this description page were taken from the source metadata.",
-              "source": "UMD",
-              "info": {
-                "rwId": "foo.065.rw0",
-                "data_type": "Raster",
-                "name": "Cropland Change",
-                "sources": [
-                  {
-                    "source-name": "",
-                    "id": 0,
-                    "source-description": "University of Maryland (UMD)"
-                  }
-                ],
-                "technical_title": "Global cropland extent and change, 2003-2019",
-                "functions": "[Draft] Cropland stability, gain and loss from 2000-2003 and 2016-2019\r\n",
-                "cautions": "  \n  \n- A probability-based sample analysis is the recommended good practice approach to estimating land cover and land use extent and change. The global land cover map time-series enables a higher sampling efficiency through stratification at the sub-national, national, and global scales. The maps should not be used as the only source data for national and international reporting due to unknown map uncertainty that may vary in space and between time intervals.\r\n  \n  \n- Cropland maps have higher accuracy in regions dominated by large-scale industrial farming, e.g. North and South America. In Europe, Asia, and Africa, the global map may underestimate small-scale cropland areas due to Landsat spatial resolution limitations in mapping heterogeneous landscapes.\r\n  \n  \n- Cropland class may be confused with the intensively managed permanent pastures as both classes have similar spectral response and phenology. This issue may cause an overestimation of cropland area in Australia, New Zealand, and parts of Western Europe.\r\n  \n  \n- Dryland rainfed agriculture and summer wheat production areas, especially when intermittent with long fallow, may be partially omitted in Central Asia and the Middle East. The short vegetation season and the lack of cloud-free Landsat data in some years may preclude dryland agriculture detection.\r\n  \n  \n- Croplands that were repeatedly abandoned and recultivated may be inconsistently mapped as cropland loss or gain.\r\n\r",
-                "citation": "(1) P. Potapov, S. Turubanova, M.C. Hansen, A. Tyukavina, V. Zalles, A. Khan, X.-P. Song, A. Pickens, Q. Shen, J. Cortez. (2021) Accelerated expansion of global cropland extent in the 21st century. In Review. Accessed through Resource Watch, (date). [www.resourcewatch.org](https://www.resourcewatch.org).\r",
-                "license": null,
-                "license_link": null,
-                "geographic_coverage": "Global",
-                "spatial_resolution": "30 m",
-                "date_of_content": "2000-2003, 2016-2019",
-                "frequency_of_updates": "Unknown",
-                "learn_more_link": "https://www.researchsquare.com/article/rs-294463/v1",
-                "data_download_link": null,
-                "data_download_original_link": "https://www.researchsquare.com/article/rs-294463/v1"
-              },
-              "columns": {},
-              "createdAt": "2021-09-30T20:20:11.559Z",
-              "updatedAt": "2021-10-19T18:42:03.966Z",
-              "status": "published"
-            }
-          }
-        ],
-        "layer": [
-          {
-            "type": "layer",
-            "id": "croplad-extend-change",
-            "attributes": {
-              "name": "2000-2003 to 2016-2019 Cropland Change",
-              "dataset": "cropland-extent-and-change",
-              "description": "Stable cropland presence and absence, cropland change (gain and loss) between two epochs: 2000-2003 and 2016-2019. The cropland change refers to areas with cropland establishment (gain) and cropland abandonment or conversion to other land uses (loss) between 2000-2003 and 2016-2019 time intervals.",
-              "provider": "leaflet",
-              "type": "raster",
-              "layerConfig": {},
-              "source": {
-                "tiles": [
-                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/cropland/{z}/{x}/{y}.png"
-                ],
-                "minzoom": 1,
-                "maxzoom": 12
-              },
-              "legendConfig": {
-                "items": [
-                  {
-                    "color": "#FFF183",
-                    "name": "Stable Cropland",
-                    "id": 1
-                  },
-                  {
-                    "color": "#fd8b2d",
-                    "name": "Cropland Loss",
-                    "id": 2
-                  },
-                  {
-                    "color": "#35978f",
-                    "name": "Cropland Gain",
-                    "id": 3
                   }
                 ],
                 "type": "basic"
