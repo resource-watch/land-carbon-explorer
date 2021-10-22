@@ -53,6 +53,7 @@ export interface QueryParams {
   lat?: number;
   lng?: number;
   zoom?: number;
+  datasets?: string[];
 }
 
 export interface HomeProps {
@@ -176,10 +177,11 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
   );
 
   useEffect(() => {
-    const newActiveDatasets = datasets.filter(({ active }) => active).map(({ id }) => id);
+    const defaultDatasets = datasets.filter(({ active }) => active).map(({ id }) => id);
+    const newActiveDatasets = query.datasets?.length ? query.datasets : defaultDatasets;
 
     dispatch(setActiveDatasets(newActiveDatasets));
-  }, [datasets]);
+  }, [datasets, query]);
 
   useEffect(() => {
     GAPage(pathname);
@@ -199,18 +201,20 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
       {
         pathname: '/',
         query: {
-          lat: latitude,
-          lng: longitude,
-          zoom,
-          // datasets: (activeDatasets as string[]).split(','),
+          ...(latitude && { lat: latitude }),
+          ...(longitude && { lng: longitude }),
+          ...(zoom && { zoom }),
+          ...(activeDatasets.length && { datasets: activeDatasets.join(',') }),
         },
       },
-      `/?lat=${latitude}&lng=${longitude}&zoom=${zoom}`,
+      `/?lat=${latitude}&lng=${longitude}&zoom=${zoom}${
+        activeDatasets.length ? `&datasets=${activeDatasets}` : ''
+      }`,
       {
         shallow: true,
       }
     );
-  }, [viewport]);
+  }, [viewport, activeDatasets]);
 
   return (
     <>
@@ -327,6 +331,7 @@ export async function getServerSideProps(context) {
         ...(context.query.lat && { lat: +context.query.lat }),
         ...(context.query.lng && { lng: +context.query.lng }),
         ...(context.query.zoom && { zoom: +context.query.zoom }),
+        ...(context.query.datasets && { datasets: context.query.datasets.split(',') }),
       },
     },
   };
