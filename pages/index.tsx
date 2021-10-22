@@ -343,16 +343,16 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
         <title>Global Land Cover Change Explorer</title>
         <meta name="description" content="Explore global high-resolution land cover change data" />
       </Head>
-      <div
-        className="bg-rw-pink bg-no-repeat bg-center bg-cover pl-4 pr-4"
+      <header
+        className="bg-rw-pink bg-no-repeat bg-center bg-cover"
         style={{
           height: 75,
           backgroundImage:
             'url(/images/header-bg-texture.png), linear-gradient(86deg,rgba(195,45,123,.8),rgba(201,14,57,.7))',
         }}
       >
-        <div className="md:max-w-screen-md xl:max-w-screen-xl m-auto flex items-center justify-between h-full">
-          <a href="https://resourcewatch.org">
+        <div className="h-full m-auto flex items-center justify-between px-4">
+          <a href="/">
             <Icon
               icon={RW_LOGO_SVG}
               className="text-white"
@@ -362,14 +362,14 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
               }}
             />
           </a>
-          <nav>
+          {/* <nav>
             <ul>
               <li />
             </ul>
-          </nav>
+          </nav> */}
         </div>
-      </div>
-      <div className="flex flex-col relative" style={{ height: 'calc(100vh - 75px)' }}>
+      </header>
+      <div className="flex relative" style={{ height: 'calc(100vh - 75px)' }}>
         <Sidebar />
         <div className="absolute top-0 left-0 right-0 h-full">
           <Map
@@ -401,7 +401,7 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
               onChangeBoundaries={handleBoundaries}
             />
           </div>
-          <div className="z-10 absolute bottom-10 right-5">
+          <div className="z-10 absolute bottom-10 right-5 max-w-sm lg:max-w-none">
             <Legend maxHeight={300} onChangeOrder={onChangeOrder}>
               {layerGroups.map((lg, i) => (
                 <LegendListItem
