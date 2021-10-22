@@ -2,7 +2,6 @@ import { useCallback, useState, useMemo, useEffect } from 'react';
 
 import ReactMarkdown from 'react-markdown';
 import { useDispatch } from 'react-redux';
-import queryString from 'query-string';
 
 import flatten from 'lodash/flatten';
 
@@ -16,6 +15,7 @@ import { useAppSelector } from 'store/hooks';
 
 import PluginMapboxGl from '@vizzuality/layer-manager-plugin-mapboxgl';
 import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
+import queryString from 'query-string';
 import {
   Legend,
   LegendListItem,
