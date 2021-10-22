@@ -74,12 +74,12 @@
                     "id": 1
                   },
                   {
-                    "color": "#fd8b2d",
+                    "color": "#35978f",
                     "name": "Cropland Loss",
                     "id": 2
                   },
                   {
-                    "color": "#35978f",
+                    "color": "#fd8b2d",
                     "name": "Cropland Gain",
                     "id": 3
                   }
