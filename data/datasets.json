@@ -5,7 +5,7 @@
       "id": "forest-hight-and-extent",
       "attributes": {
         "name": "[internal] 2000-2020 Forest Height Change",
-        "active": true,
+        "active": false,
         "subtitle": "",
         "metadata": [
           {
@@ -115,7 +115,7 @@
       "id": "water-extent-and-change",
       "attributes": {
         "name": "[internal] Water Extent and Change",
-        "active": true,
+        "active": false,
         "subtitle": "",
         "metadata": [
           {
@@ -305,7 +305,7 @@
       "id": "snow-ice-extent-and-change",
       "attributes": {
         "name": "[internal] Snow/Ice Change",
-        "active": true,
+        "active": false,
         "subtitle": "",
         "metadata": [
           {
@@ -396,7 +396,7 @@
       "id": "built-up-extent-and-change",
       "attributes": {
         "name": "[internal] Built-Up Area Change",
-        "active": true,
+        "active": false,
         "subtitle": "",
         "metadata": [
           {
