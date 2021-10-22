@@ -42,10 +42,27 @@ const DEFAULT_MODAL_STATE = {
   title: null,
   content: null,
 };
+export interface ViewPortTypes {
+  zoom?: number;
+  pitch?: number;
+  longitude?: number;
+  latitude: number;
+}
 
-const Home: React.FC = () => {
-  const { pathname } = useRouter();
-  const [viewport, setViewport] = useState(DEFAULT_VIEWPORT);
+export interface QueryParams {
+  lat?: number;
+  lng?: number;
+  zoom?: number;
+  datasets?: string[];
+}
+
+export interface HomeProps {
+  query: QueryParams;
+}
+
+const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
+  const router = useRouter();
+
   const [modalContent, setModalContent] = useState(DEFAULT_MODAL_STATE);
   const [layersOrder, setLayersOrder] = useState([]);
   const dispatch: AppDispatch = useDispatch();
@@ -54,6 +71,13 @@ const Home: React.FC = () => {
   const boundaries = useAppSelector((state) => state.map.boundaries);
   const layerParams = useAppSelector((state) => state.layers);
   const activeDatasets = useAppSelector((state) => state.activeDatasets);
+  const { pathname } = router;
+  const [viewport, setViewport] = useState<ViewPortTypes>({
+    ...DEFAULT_VIEWPORT,
+    ...(query.lat && { latitude: query.lat }),
+    ...(query.lng && { longitude: query.lng }),
+    ...(query.zoom && { zoom: query.zoom }),
+  });
 
   const handleViewport = useCallback((_viewport) => {
     setViewport(_viewport);
@@ -274,14 +298,44 @@ const Home: React.FC = () => {
   );
 
   useEffect(() => {
-    const newActiveDatasets = datasets.filter(({ active }) => active).map(({ id }) => id);
+    const defaultDatasets = datasets.filter(({ active }) => active).map(({ id }) => id);
+    const newActiveDatasets = query.datasets?.length ? query.datasets : defaultDatasets;
 
     dispatch(setActiveDatasets(newActiveDatasets));
-  }, [datasets]);
+  }, [datasets, query]);
 
   useEffect(() => {
     GAPage(pathname);
   }, [pathname]);
+
+  useEffect(() => {
+    setViewport({
+      ...(query.lat && { latitude: +query.lat }),
+      ...(query.lng && { longitude: +query.lng }),
+      ...(query.zoom && { zoom: +query.zoom }),
+    });
+  }, [query]);
+
+  useEffect(() => {
+    const { latitude, longitude, zoom } = viewport;
+    router.push(
+      {
+        pathname: '/',
+        query: {
+          ...(latitude && { lat: latitude }),
+          ...(longitude && { lng: longitude }),
+          ...(zoom && { zoom }),
+          ...(activeDatasets.length && { datasets: activeDatasets.join(',') }),
+        },
+      },
+      `/?lat=${latitude}&lng=${longitude}&zoom=${zoom}${
+        activeDatasets.length ? `&datasets=${activeDatasets}` : ''
+      }`,
+      {
+        shallow: true,
+      }
+    );
+  }, [viewport, activeDatasets]);
 
   return (
     <>
@@ -379,5 +433,18 @@ const Home: React.FC = () => {
     </>
   );
 };
+
+export async function getServerSideProps(context) {
+  return {
+    props: {
+      query: {
+        ...(context.query.lat && { lat: +context.query.lat }),
+        ...(context.query.lng && { lng: +context.query.lng }),
+        ...(context.query.zoom && { zoom: +context.query.zoom }),
+        ...(context.query.datasets && { datasets: context.query.datasets.split(',') }),
+      },
+    },
+  };
+}
 
 export default Home;
