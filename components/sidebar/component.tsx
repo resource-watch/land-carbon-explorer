@@ -45,7 +45,7 @@ export const Sidebar: FC = () => {
       >
         <Icon icon={isSidebarOpen ? ARROW_RIGHT_SVG : ARROW_LEFT_SVG} className="w-3" />
       </button>
-      <div className="p-4 h-full overflow-y-auto pb-3">
+      <div className="p-4 h-full overflow-y-auto">
         <h2>Global Land Cover Change</h2>
 
         <p className="text-sm">
@@ -65,7 +65,7 @@ export const Sidebar: FC = () => {
         <p className="bg-rw-gray-4 p-4 text-xs rounded-sm">
           Beta version: data still under review and subject to change.
         </p>
-        <div className="h-full mt-5">
+        <div className="my-5">
           <DatasetCardList list={datasets} />
         </div>
       </div>
