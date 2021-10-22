@@ -54,6 +54,7 @@ export interface QueryParams {
   lng?: number;
   zoom?: number;
   datasets?: string[];
+  embed: boolean;
 }
 
 export interface HomeProps {
@@ -326,11 +327,12 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
           ...(longitude && { lng: longitude }),
           ...(zoom && { zoom }),
           ...(activeDatasets.length && { datasets: activeDatasets.join(',') }),
+          ...(query.embed && { embed: 'true' }),
         },
       },
       `/?lat=${latitude}&lng=${longitude}&zoom=${zoom}${
         activeDatasets.length ? `&datasets=${activeDatasets}` : ''
-      }`,
+      }${query.embed ? `&embed=true` : ''}`,
       {
         shallow: true,
       }
@@ -343,33 +345,33 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
         <title>Global Land Cover Change Explorer</title>
         <meta name="description" content="Explore global high-resolution land cover change data" />
       </Head>
-      <header
-        className="bg-rw-pink bg-no-repeat bg-center bg-cover"
-        style={{
-          height: 75,
-          backgroundImage:
-            'url(/images/header-bg-texture.png), linear-gradient(86deg,rgba(195,45,123,.8),rgba(201,14,57,.7))',
-        }}
+      {!query.embed && (
+        <header
+          className="bg-rw-pink bg-no-repeat bg-center bg-cover"
+          style={{
+            height: 75,
+            backgroundImage:
+              'url(/images/header-bg-texture.png), linear-gradient(86deg,rgba(195,45,123,.8),rgba(201,14,57,.7))',
+          }}
+        >
+          <div className="h-full m-auto flex items-center justify-between px-4">
+            <a href="/">
+              <Icon
+                icon={RW_LOGO_SVG}
+                className="text-white"
+                style={{
+                  width: 200,
+                  height: 35,
+                }}
+              />
+            </a>
+          </div>
+        </header>
+      )}
+      <div
+        className="flex flex-col relative"
+        style={{ height: query.embed ? '100vh' : 'calc(100vh - 75px)' }}
       >
-        <div className="h-full m-auto flex items-center justify-between px-4">
-          <a href="/">
-            <Icon
-              icon={RW_LOGO_SVG}
-              className="text-white"
-              style={{
-                width: 200,
-                height: 35,
-              }}
-            />
-          </a>
-          {/* <nav>
-            <ul>
-              <li />
-            </ul>
-          </nav> */}
-        </div>
-      </header>
-      <div className="flex relative" style={{ height: 'calc(100vh - 75px)' }}>
         <Sidebar />
         <div className="absolute top-0 left-0 right-0 h-full">
           <Map
@@ -420,6 +422,20 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
               ))}
             </Legend>
           </div>
+          {query.embed && (
+            <div className="z-10 absolute bottom-6 left-96">
+              <a href="https://resourcewatch.org">
+                <Icon
+                  icon={RW_LOGO_SVG}
+                  className="text-white"
+                  style={{
+                    width: 200,
+                    height: 35,
+                  }}
+                />
+              </a>
+            </div>
+          )}
         </div>
       </div>
       <Modal
@@ -442,6 +458,7 @@ export async function getServerSideProps(context) {
         ...(context.query.lng && { lng: +context.query.lng }),
         ...(context.query.zoom && { zoom: +context.query.zoom }),
         ...(context.query.datasets && { datasets: context.query.datasets.split(',') }),
+        ...(context.query.embed && { embed: Boolean(context.query.embed) }),
       },
     },
   };
