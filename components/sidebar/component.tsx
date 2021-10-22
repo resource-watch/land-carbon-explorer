@@ -46,12 +46,24 @@ export const Sidebar: FC = () => {
         <Icon icon={isSidebarOpen ? ARROW_RIGHT_SVG : ARROW_LEFT_SVG} className="w-3" />
       </button>
       <div className="p-4 h-full overflow-y-auto pb-3">
-        <p>
-          Developed in partnership with the{' '}
+        <h2>Global Land Cover Change</h2>
+
+        <p className="text-sm">
+          Data developed by the University of Maryland in partnership with the{' '}
           <a target="_blank" rel="noopener noreferrer" href="https://landcarbonlab.org/">
             Land & Carbon Lab
           </a>
           .
+        </p>
+        <p className="text-sm">
+          Questions? Feedback?{' '}
+          <a target="_blank" rel="noopener noreferrer" href="https://landcarbonlab.org/contact-us">
+            Get in touch
+          </a>
+          !
+        </p>
+        <p className="bg-rw-gray-4 p-4 text-xs rounded-sm">
+          Beta version: data still under review and subject to change.
         </p>
         <div className="h-full mt-5">
           <DatasetCardList list={datasets} />

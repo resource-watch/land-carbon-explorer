@@ -13,7 +13,6 @@ import { AppDispatch } from 'store';
 import { Dataset, Layer, DatasetMetadata } from 'types';
 
 import MapThumbnail from './map-thumbnail';
-import { getDateConsideringTimeZone } from './utils';
 
 export interface DatasetCardItemProps {
   dataset: Dataset;
@@ -28,7 +27,6 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
 }: DatasetCardItemProps) => {
   const dispatch: AppDispatch = useDispatch();
   const activeDatasets = useAppSelector((state) => state.activeDatasets);
-  const dateLastUpdated = getDateConsideringTimeZone(dataset.dataLastUpdated, true);
   const isDatasetActive = useMemo(
     () => Boolean(activeDatasets.find((datasetId) => datasetId === dataset.id)),
     [activeDatasets, dataset]
@@ -58,24 +56,15 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
 
       {/* INFO */}
       <div className="flex-1 flex-col flex-grow justify-between p-2">
-        <div className="flex justify-between">
-          {/* Source */}
-          <div className="text-xs font-bold text-rw-gray-2" title={metadata?.[0]?.source}>
-            {metadata?.[0]?.source}
-          </div>
-          {/* Last update */}
-          <div className="text-xs font-bold text-rw-gray-2">{dateLastUpdated}</div>
-        </div>
-
-        {/* Title */}
-        <div className="mt-2">
-          <h4 className="text-rw-gray font-bold antialiased">
+        <div className="flex flex-col justify-between h-full">
+          {/* Title */}
+          <h4 className="mt-2 text-rw-gray font-bold antialiased">
             {metadata?.[0]?.info?.name || dataset.name}
           </h4>
           <button
             type="button"
             className={classnames({
-              'w-full mt-6 px-8 py-1 rounded bg-transparent text-sm antialiased border-rw-pink border focus:outline-none whitespace-nowrap':
+              'self-end w-full mt-6 px-8 py-1 rounded bg-transparent text-sm antialiased border-rw-pink border focus:outline-none whitespace-nowrap':
                 true,
               'bg-rw-pink text-white': isDatasetActive,
               'text-rw-pink': !isDatasetActive,
