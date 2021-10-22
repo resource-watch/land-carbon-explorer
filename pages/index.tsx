@@ -2,6 +2,7 @@ import { useCallback, useState, useMemo, useEffect } from 'react';
 
 import ReactMarkdown from 'react-markdown';
 import { useDispatch } from 'react-redux';
+import queryString from 'query-string';
 
 import flatten from 'lodash/flatten';
 
@@ -49,19 +50,23 @@ export interface ViewPortTypes {
   latitude: number;
 }
 
+export interface URLParams {
+  lat?: string;
+  lng?: string;
+  zoom?: string;
+  datasets?: string;
+  embed?: string;
+}
+
 export interface QueryParams {
   lat?: number;
   lng?: number;
   zoom?: number;
   datasets?: string[];
-  embed: boolean;
+  embed?: boolean;
 }
 
-export interface HomeProps {
-  query: QueryParams;
-}
-
-const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
+const Home: React.FC = () => {
   const router = useRouter();
 
   const [modalContent, setModalContent] = useState(DEFAULT_MODAL_STATE);
@@ -73,12 +78,8 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
   const layerParams = useAppSelector((state) => state.layers);
   const activeDatasets = useAppSelector((state) => state.activeDatasets);
   const { pathname } = router;
-  const [viewport, setViewport] = useState<ViewPortTypes>({
-    ...DEFAULT_VIEWPORT,
-    ...(query.lat && { latitude: query.lat }),
-    ...(query.lng && { longitude: query.lng }),
-    ...(query.zoom && { zoom: query.zoom }),
-  });
+  const [viewport, setViewport] = useState<Partial<ViewPortTypes>>(DEFAULT_VIEWPORT);
+  const [query, setQuery] = useState<QueryParams>({ embed: false });
 
   const handleViewport = useCallback((_viewport) => {
     setViewport(_viewport);
@@ -300,7 +301,7 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
 
   useEffect(() => {
     const defaultDatasets = datasets.filter(({ active }) => active).map(({ id }) => id);
-    const newActiveDatasets = query.datasets?.length ? query.datasets : defaultDatasets;
+    const newActiveDatasets = query?.datasets?.length ? query.datasets : defaultDatasets;
 
     dispatch(setActiveDatasets(newActiveDatasets));
   }, [datasets, query]);
@@ -310,11 +311,20 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
   }, [pathname]);
 
   useEffect(() => {
-    setViewport({
-      ...(query.lat && { latitude: +query.lat }),
-      ...(query.lng && { longitude: +query.lng }),
-      ...(query.zoom && { zoom: +query.zoom }),
+    const urlParams = queryString.parse(window.location.search) as URLParams;
+    const datasetsParsed = urlParams.datasets?.split(',');
+
+    setQuery({
+      ...(urlParams.lat && { latitude: +urlParams.lat }),
+      ...(urlParams.lng && { longitude: +urlParams.lng }),
+      ...(urlParams.zoom && { zoom: +urlParams.zoom }),
+      ...(urlParams.datasets && { datasets: datasetsParsed }),
+      ...(urlParams.embed && { embed: Boolean(urlParams.embed) }),
     });
+  }, []);
+
+  useEffect(() => {
+    if (query) setViewport({ ...DEFAULT_VIEWPORT, ...query });
   }, [query]);
 
   useEffect(() => {
@@ -327,12 +337,12 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
           ...(longitude && { lng: longitude }),
           ...(zoom && { zoom }),
           ...(activeDatasets.length && { datasets: activeDatasets.join(',') }),
-          ...(query.embed && { embed: 'true' }),
+          ...(query?.embed && { embed: 'true' }),
         },
       },
       `/?lat=${latitude}&lng=${longitude}&zoom=${zoom}${
         activeDatasets.length ? `&datasets=${activeDatasets}` : ''
-      }${query.embed ? `&embed=true` : ''}`,
+      }${query?.embed ? `&embed=true` : ''}`,
       {
         shallow: true,
       }
@@ -345,7 +355,7 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
         <title>Global Land Cover Change Explorer</title>
         <meta name="description" content="Explore global high-resolution land cover change data" />
       </Head>
-      {!query.embed && (
+      {!query?.embed && (
         <header
           className="bg-rw-pink bg-no-repeat bg-center bg-cover"
           style={{
@@ -370,7 +380,7 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
       )}
       <div
         className="flex flex-col relative"
-        style={{ height: query.embed ? '100vh' : 'calc(100vh - 75px)' }}
+        style={{ height: query?.embed ? '100vh' : 'calc(100vh - 75px)' }}
       >
         <Sidebar />
         <div className="absolute top-0 left-0 right-0 h-full">
@@ -422,7 +432,7 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
               ))}
             </Legend>
           </div>
-          {query.embed && (
+          {query?.embed && (
             <div className="z-10 absolute bottom-6 left-96">
               <a href="https://resourcewatch.org">
                 <Icon
@@ -449,19 +459,5 @@ const Home: React.FC<HomeProps> = ({ query }: HomeProps) => {
     </>
   );
 };
-
-export async function getServerSideProps(context) {
-  return {
-    props: {
-      query: {
-        ...(context.query.lat && { lat: +context.query.lat }),
-        ...(context.query.lng && { lng: +context.query.lng }),
-        ...(context.query.zoom && { zoom: +context.query.zoom }),
-        ...(context.query.datasets && { datasets: context.query.datasets.split(',') }),
-        ...(context.query.embed && { embed: Boolean(context.query.embed) }),
-      },
-    },
-  };
-}
 
 export default Home;
