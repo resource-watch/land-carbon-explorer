@@ -1,3 +1,15 @@
 # Land Carbon Explorer
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut libero sit amet nulla vulputate venenatis. Proin egestas ligula et rhoncus sodales. Cras tempor dolor ac eros hendrerit interdum. Suspendisse porta tellus eget pharetra aliquam. Etiam dolor magna, scelerisque ut erat a, accumsan commodo mi. Nullam eleifend eu metus nec sagittis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin venenatis vel neque rutrum semper. Vestibulum dolor enim, tempus nec euismod nec, viverra ac ex. In hac habitasse platea dictumst.
+## Development intructions
+
+Installation:
+
+```bash
+yarn install
+```
+
+Run for development:
+
+```bash
+yarn dev
+```
