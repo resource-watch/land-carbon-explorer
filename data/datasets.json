@@ -39,7 +39,7 @@
                 "frequency_of_updates": "Unknown",
                 "learn_more_link": "https://www.researchsquare.com/article/rs-294463/v1",
                 "data_download_link": null,
-                "data_download_original_link": "https://www.researchsquare.com/article/rs-294463/v1"
+                "data_download_original_link": "https://glad.umd.edu/dataset/croplands"
               },
               "columns": {},
               "createdAt": "2021-09-30T20:20:11.559Z",
@@ -130,7 +130,7 @@
                 "frequency_of_updates": "Unknown",
                 "learn_more_link": "https://www.sciencedirect.com/science/article/pii/S0034425720305381?via%3Dihub",
                 "data_download_link": null,
-                "data_download_original_link": "https://www.sciencedirect.com/science/article/pii/S0034425720305381?via%3Dihub"
+                "data_download_original_link": null
               },
               "createdAt": "2021-10-19T18:43:15.979Z",
               "updatedAt": "2021-10-19T18:43:15.980Z",
@@ -405,7 +405,7 @@
             "attributes": {
               "language": "en",
               "name": "Built-Up Area Change",
-              "description": "",
+              "description": "### Overview  \n  \n_**The Built up area data is still a draft product and data are subject to change in the future.**_\r\n  \n  \n",
               "source": "UMD",
               "info": {
                 "rwId": "cli.001.rw0",
@@ -419,7 +419,7 @@
                   }
                 ],
                 "technical_title": "",
-                "functions": "",
+                "functions": "[Draft] Built up area extent and gain from 2000 to 2020.",
                 "cautions": "",
                 "citation": "",
                 "license": null,
