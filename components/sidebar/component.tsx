@@ -49,7 +49,7 @@ export const Sidebar: FC = () => {
         <h2>Global Land Cover Change</h2>
 
         <p className="text-sm">
-          Data developed by the University of Maryland in partnership with the{' '}
+          Data developed by the University of Maryland in partnership with{' '}
           <a target="_blank" rel="noopener noreferrer" href="https://landcarbonlab.org/">
             Land & Carbon Lab
           </a>
