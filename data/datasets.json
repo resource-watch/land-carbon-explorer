@@ -37,7 +37,7 @@
                 "spatial_resolution": "30 m",
                 "date_of_content": "2000-2003, 2016-2019",
                 "frequency_of_updates": "Unknown",
-                "learn_more_link": "https://glad.umd.edu/dataset/croplands",
+                "learn_more_link": "https://www.researchsquare.com/article/rs-294463/v1",
                 "data_download_link": null,
                 "data_download_original_link": "https://glad.umd.edu/dataset/croplands"
               },
@@ -420,7 +420,7 @@
                   }
                 ],
                 "technical_title": "",
-                "functions": "[Draft] Built up area extent and gain from 2000 to 2020.",
+                "functions": "Built up area extent and gain from 2000 to 2020.",
                 "cautions": "",
                 "citation": "",
                 "license": null,
