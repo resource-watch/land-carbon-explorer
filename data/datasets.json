@@ -58,6 +58,7 @@
               "dataset": "mosaic",
               "provider": "leaflet",
               "type": "raster",
+              "layerConfig": {},
               "source": {
                 "tiles": [
                   "https://storage.googleapis.com/lcl_tiles/GLCLU2020/composite2020/{z}/{x}/{y}.png"
@@ -89,7 +90,7 @@
                   },
                   {
                   "color": "#88CAAD",
-                  "name": "Wetland - Short Vegitation",
+                  "name": "Wetland - Short Vegetation",
                   "id": 4
                   },
                   {
@@ -183,6 +184,7 @@
               "dataset": "mosaic",
               "provider": "leaflet",
               "type": "raster",
+              "layerConfig": {},
               "source": {
                 "tiles": [
                   "https://storage.googleapis.com/lcl_tiles/GLCLU2020/composite2000/{z}/{x}/{y}.png"
@@ -214,7 +216,7 @@
                   },
                   {
                   "color": "#88CAAD",
-                  "name": "Wetland - Short Vegitation",
+                  "name": "Wetland - Short Vegetation",
                   "id": 4
                   },
                   {
