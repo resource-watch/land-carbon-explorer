@@ -2,10 +2,262 @@
   "data": [
     {
       "type": "dataset",
+      "id": "mosaic-land-cover-and-land-use-2020",
+      "attributes": {
+        "name": "[internal] Composite Land Cover Map 2020",
+        "active": true,
+        "subtitle": "",
+        "metadata": [
+          {
+            "id": "613f8f271f59a5001b0e2488",
+            "type": "metadata",
+            "attributes": {
+              "language": "en",
+              "name": "2020 Land Cover 2020",
+              "description": "### Overview  \n  \n_**The land cover map is still a draft product and data are subject to change in the future.**_\r\n  \n  \nThe global composite land cover maps were created by the Global Land Analysis and Discovery Lab (GLAD) laboratory, and the data is available at 30 m spatial resolution, globally, for 2000 and 2020. The GLAD laboratory classified all available Landsat 5, 7, and 8 scenes. \n  \n  \nThe Global Land Analysis and Discovery Lab (GLAD) laboratory in the Department of Geographical Sciences at UMD investigates methods, causes, and impacts of global land surface change.  Earth observation imagery is the primary data source, and the land cover extent and change is the primary topic of interest. GLAD aspires to generate new science insights concerning land resources, educate the next generation of remote sensing-based land change scientists, and disseminate land monitoring capabilities to operational settings nationally and internationally.  \n  \n### Additional Information  \n  \nResource Watch shows only a subset of the dataset.  \n  \n### Visualizing the Data  \n  \nOur team reformatted this dataset before displaying it on Resource Watch.  \n  \n### Disclaimer  \n  \nExcerpts of this description page were taken from the source metadata.",
+              "source": "UMD",
+              "info": {
+                "rwId": "soc.009.rw0",
+                "data_type": "Raster",
+                "name": "2020 Land Cover",
+                "sources": [
+                  {
+                    "source-name": "",
+                    "id": 0,
+                    "source-description": "University of Maryland (UMD)"
+                  }
+                ],
+                "technical_title": "Composite Land Cover Map",
+                "functions": "Composite land cover map of 2000 and 2020",
+                "cautions": null,
+                "citation": null,
+                "license": null,
+                "license_link": null,
+                "geographic_coverage": "Global",
+                "spatial_resolution": "30 m",
+                "date_of_content": "2000-2020",
+                "frequency_of_updates": "Unknown",
+                "learn_more_link": null,
+                "data_download_link": null,
+                "data_download_original_link": null
+              },
+              "columns": {},
+              "createdAt": "2021-09-13T17:49:27.133Z",
+              "updatedAt": "2021-10-19T18:36:29.813Z",
+              "status": "published"
+            }
+          }
+        ],
+        "layer": [
+          {
+            "type": "layer",
+            "id": "mosaic-land-cover-and-land-use-2020",
+            "attributes": {
+              "name": "2020 Land Cover",
+              "description": "Global composite land cover map of 2020 with 9 classes shown. Unknown and ocean classes are not shown.",
+              "dataset": "mosaic-land-cover-and-land-use-2020",
+              "provider": "leaflet",
+              "type": "raster",
+              "layerConfig": {},
+              "source": {
+                "tiles": [
+                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/composite2020/{z}/{x}/{y}.png"
+                ],
+                "minzoom": 1,
+                "maxzoom": 12
+              },
+              "legendConfig": {
+                "items": [
+                  {
+                  "color": "#FEFECC",
+                  "name": "Bare Ground",
+                  "id": 0
+                  },
+                  {
+                  "color": "#B9B91E",
+                  "name": "Short Vegetation",
+                  "id": 1
+                  },
+                  {
+                  "color": "#347834",
+                  "name": "Forest",
+                  "id": 2
+                  },
+                  {
+                  "color": "#0D570D",
+                  "name": "Tall Forest (20m+)",
+                  "id": 3
+                  },
+                  {
+                  "color": "#88CAAD",
+                  "name": "Wetland - Short Vegetation",
+                  "id": 4
+                  },
+                  {
+                  "color": "#589558",
+                  "name": "Wetland - Forest",
+                  "id": 5
+                  },
+                  {
+                  "color": "#6baed6",
+                  "name": "Water",
+                  "id": 6
+                  },
+                  {
+                  "color": "#acd1e8",
+                  "name": "Snow/Ice",
+                  "id": 7
+                  },
+                  {
+                  "color": "#fff183",
+                  "name": "Cropland",
+                  "id": 8
+                  },
+                  {
+                  "color": "#e8765d",
+                  "name": "Built-up Area",
+                  "id": 9
+                  }
+                  ],
+                "type": "basic"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "dataset",
+      "id": "mosaic-land-cover-and-land-use-2000",
+      "attributes": {
+        "name": "[internal] Composite Land Cover Map",
+        "active": false,
+        "subtitle": "",
+        "metadata": [
+          {
+            "id": "613f8f271f59a5001b0e2488",
+            "type": "metadata",
+            "attributes": {
+              "language": "en",
+              "name": "2000 Land Cover",
+              "description": "### Overview  \n  \n_**The land cover map is still a draft product and data are subject to change in the future.**_\r\n  \n  \nThe global composite land cover maps were created by the Global Land Analysis and Discovery Lab (GLAD) laboratory, and the data is available at 30 m spatial resolution, globally, for 2000 and 2020. The GLAD laboratory classified all available Landsat 5, 7, and 8 scenes. \n  \n  \nThe Global Land Analysis and Discovery Lab (GLAD) laboratory in the Department of Geographical Sciences at UMD investigates methods, causes, and impacts of global land surface change.  Earth observation imagery is the primary data source, and the land cover extent and change is the primary topic of interest. GLAD aspires to generate new science insights concerning land resources, educate the next generation of remote sensing-based land change scientists, and disseminate land monitoring capabilities to operational settings nationally and internationally.  \n  \n### Additional Information  \n  \nResource Watch shows only a subset of the dataset.  \n  \n### Visualizing the Data  \n  \nOur team reformatted this dataset before displaying it on Resource Watch.  \n  \n### Disclaimer  \n  \nExcerpts of this description page were taken from the source metadata.",
+              "source": "UMD",
+              "info": {
+                "rwId": "soc.009.rw0",
+                "data_type": "Raster",
+                "name": "2000 Land Cover",
+                "sources": [
+                  {
+                    "source-name": "",
+                    "id": 0,
+                    "source-description": "University of Maryland (UMD)"
+                  }
+                ],
+                "technical_title": "Composite Land Cover Map",
+                "functions": "Composite land cover map of 2000 and 2020",
+                "cautions": null,
+                "citation": null,
+                "license": null,
+                "license_link": null,
+                "geographic_coverage": "Global",
+                "spatial_resolution": "30 m",
+                "date_of_content": "2000-2020",
+                "frequency_of_updates": "Unknown",
+                "learn_more_link": null,
+                "data_download_link": null,
+                "data_download_original_link": null
+              },
+              "columns": {},
+              "createdAt": "2021-09-13T17:49:27.133Z",
+              "updatedAt": "2021-10-19T18:36:29.813Z",
+              "status": "published"
+            }
+          }
+        ],
+        "layer": [
+          {
+            "type": "layer",
+            "id": "mosaic-land-cover-and-land-use-2000",
+            "attributes": {
+              "name": "2000 Land Cover",
+              "description": "Global composite land cover map of 2000 with 9 classes shown. Unknown and ocean classes are not shown.",
+              "dataset": "mosaic-land-cover-and-land-use-2000",
+              "provider": "leaflet",
+              "type": "raster",
+              "layerConfig": {},
+              "source": {
+                "tiles": [
+                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/composite2000/{z}/{x}/{y}.png"
+                ],
+                "minzoom": 1,
+                "maxzoom": 12
+              },
+              "legendConfig": {
+                "items": [
+                  {
+                  "color": "#FEFECC",
+                  "name": "Bare Ground",
+                  "id": 0
+                  },
+                  {
+                  "color": "#B9B91E",
+                  "name": "Short Vegetation",
+                  "id": 1
+                  },
+                  {
+                  "color": "#347834",
+                  "name": "Forest",
+                  "id": 2
+                  },
+                  {
+                  "color": "#0D570D",
+                  "name": "Tall Forest (20m+)",
+                  "id": 3
+                  },
+                  {
+                  "color": "#88CAAD",
+                  "name": "Wetland - Short Vegetation",
+                  "id": 4
+                  },
+                  {
+                  "color": "#589558",
+                  "name": "Wetland - Forest",
+                  "id": 5
+                  },
+                  {
+                  "color": "#6baed6",
+                  "name": "Water",
+                  "id": 6
+                  },
+                  {
+                  "color": "#acd1e8",
+                  "name": "Snow/Ice",
+                  "id": 7
+                  },
+                  {
+                  "color": "#fff183",
+                  "name": "Cropland",
+                  "id": 8
+                  },
+                  {
+                  "color": "#e8765d",
+                  "name": "Built-up Area",
+                  "id": 9
+                  }
+                  ],
+                "type": "basic"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "dataset",
       "id": "cropland-extent-and-change",
       "attributes": {
         "name": "[internal] Cropland extent and change",
-        "active": true,
+        "active": false,
         "subtitle": "",
         "metadata": [
           {
