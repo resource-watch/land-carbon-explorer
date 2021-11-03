@@ -51,11 +51,11 @@
         "layer": [
           {
             "type": "layer",
-            "id": "change-highlights",
+            "id": "change-mask",
             "attributes": {
               "name": "2000-2020 Land Cover Change Mask",
               "description": "The change highlights layer hides areas that are the same land cover class in 2000 and 2020.",
-              "dataset": "change-highlights",
+              "dataset": "change-mask",
               "provider": "leaflet",
               "type": "raster",
               "layerConfig": {},
