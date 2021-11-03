@@ -53,7 +53,7 @@
             "type": "layer",
             "id": "change-highlights",
             "attributes": {
-              "name": "Change highlights",
+              "name": "2000-2020 Land Cover Change Mask",
               "description": "The change highlights layer hides areas that are the same land cover class in 2000 and 2020.",
               "dataset": "change-highlights",
               "provider": "leaflet",
