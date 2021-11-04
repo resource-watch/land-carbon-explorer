@@ -329,10 +329,13 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const { latitude, longitude, zoom } = viewport;
+    const urlParams = queryString.parse(window.location.search) as URLParams;
+
     router.push(
       {
         pathname: '/',
         query: {
+          ...urlParams,
           ...(latitude && { lat: latitude }),
           ...(longitude && { lng: longitude }),
           ...(zoom && { zoom }),
@@ -340,9 +343,7 @@ const Home: React.FC = () => {
           ...(query?.embed && { embed: 'true' }),
         },
       },
-      `/?lat=${latitude}&lng=${longitude}&zoom=${zoom}${
-        activeDatasets.length ? `&datasets=${activeDatasets}` : ''
-      }${query?.embed ? `&embed=true` : ''}`,
+      null,
       {
         shallow: true,
       }
