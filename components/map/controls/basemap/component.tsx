@@ -21,15 +21,28 @@ export const BasemapControls: FC<BasemapControlProps> = ({
   onChangeBoundaries,
 }: BasemapControlProps) => {
   const [active, setActive] = useState(false);
+  let basemapSelectorRef = null;
 
-  const onScreenClick = useCallback((e) => {
-    const el = document.getElementById('basemap-selector');
-    const clickOutside = el && el.contains && !el.contains(e.target);
+  const handleClickBasemap = useCallback(
+    (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      setActive(!active);
+    },
+    [active]
+  );
 
-    if (clickOutside) {
-      setActive(false);
-    }
-  }, []);
+  const onScreenClick = useCallback(
+    (e) => {
+      const el = basemapSelectorRef.current;
+      const clickOutside = el && el.contains && !el.contains(e.target);
+
+      if (clickOutside && active) {
+        setActive(false);
+      }
+    },
+    [basemapSelectorRef, active]
+  );
 
   const onBasemapChange = useCallback(
     (evt) => {
@@ -50,13 +63,6 @@ export const BasemapControls: FC<BasemapControlProps> = ({
       onChangeBoundaries(evt.target.checked);
     },
     [onChangeBoundaries]
-  );
-
-  useEffect(
-    () => () => {
-      document.removeEventListener('click', onScreenClick);
-    },
-    []
   );
 
   useEffect(() => {
@@ -83,14 +89,14 @@ export const BasemapControls: FC<BasemapControlProps> = ({
             ref={ref}
             type="button"
             className="mt-1 p-1.5 bg-white text-black"
-            onClick={() => {
-              setActive(true);
-            }}
+            onClick={handleClickBasemap}
           >
             <Icon icon={LAYERS_SVG} className="w-5 h-5" />
           </button>
         )}
         renderElement={(ref) => {
+          basemapSelectorRef = ref;
+
           if (!active) return null;
 
           return (
