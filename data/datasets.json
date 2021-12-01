@@ -705,7 +705,7 @@
               "layerConfig": {},
               "source": {
                 "tiles": [
-                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/builtup/{z}/{x}/{y}.png"
+                  "https://storage.googleapis.com/lcl_tiles/GLCLU2020/builtup_2/{z}/{x}/{y}.png"
                 ],
                 "minzoom": 1,
                 "maxzoom": 12
