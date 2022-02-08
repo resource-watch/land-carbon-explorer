@@ -62,9 +62,6 @@ export const Sidebar: FC = () => {
           </a>
           !
         </p>
-        <p className="bg-rw-gray-4 p-4 text-xs rounded-sm">
-          Beta version: data still under review and subject to change.
-        </p>
         <div className="my-5">
           <DatasetCardList list={datasets} />
         </div>

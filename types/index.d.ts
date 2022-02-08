@@ -63,12 +63,14 @@ export interface DatasetMetadata {
   name: string;
   description?: string;
   source?: string;
+  subtitle?: string;
   info: MetadataInfo;
 }
 export interface Dataset {
   id: string;
   active?: boolean;
   name: string;
+  subtitle?: string;
   layer: Layer[];
   widget: Widget[];
   metadata: DatasetMetadata[];
