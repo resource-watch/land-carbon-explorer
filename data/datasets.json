@@ -6,7 +6,7 @@
       "attributes": {
         "name": "[internal] Composite Land Cover Map 2020",
         "active": true,
-        "subtitle": "",
+        "subtitle": "(beta version)",
         "metadata": [
           {
             "id": "613f8f271f59a5001b0e2488",
@@ -132,7 +132,7 @@
       "attributes": {
         "name": "[internal] Composite Land Cover Map",
         "active": false,
-        "subtitle": "",
+        "subtitle": "(beta version)",
         "metadata": [
           {
             "id": "613f8f271f59a5001b0e2488",
@@ -349,7 +349,7 @@
       "attributes": {
         "name": "[internal] 2000-2020 Forest Height Change",
         "active": false,
-        "subtitle": "",
+        "subtitle": "(beta version)",
         "metadata": [
           {
             "id": "616f11c36cd78b001acc1b6e",
@@ -559,7 +559,7 @@
       "attributes": {
         "name": "[internal] Snow/Ice Change",
         "active": false,
-        "subtitle": "",
+        "subtitle": "(beta version)",
         "metadata": [
           {
             "id": "613f8f271f59a5001b0e2488",
@@ -650,7 +650,7 @@
       "attributes": {
         "name": "[internal] Built-Up Area Change",
         "active": false,
-        "subtitle": "",
+        "subtitle": "(beta version)",
         "metadata": [
           {
             "id": "613f8f271f59a5001b0e2488",

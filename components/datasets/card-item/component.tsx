@@ -61,6 +61,7 @@ export const DatasetCardItem: FC<DatasetCardItemProps> = ({
           <h4 className="mt-2 text-rw-gray font-bold antialiased">
             {metadata?.[0]?.info?.name || dataset.name}
           </h4>
+          <p className="text-rw-gray text-xs">{dataset?.subtitle}</p>
           <button
             type="button"
             className={classnames({
